@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/MyFort.App
+/MyFort.App/MyFort.App/bin/Debug/netstandard2.0
+/MyFort.App/MyFort.App/obj
+/MyFort.App/MyFort.App.Android/bin/Debug
+/MyFort.App/MyFort.App.Android/obj

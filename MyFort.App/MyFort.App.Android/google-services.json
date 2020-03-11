@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "126413075708",
+    "firebase_url": "https://myfortapp.firebaseio.com",
+    "project_id": "myfortapp",
+    "storage_bucket": "myfortapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126413075708:android:e8cd2b8429172127ca1379",
+        "android_client_info": {
+          "package_name": "com.ayvan.myfort.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126413075708-17tpbrgaud3j5inirq8785abjh3ecmuo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ayvan.myfort.app",
+            "certificate_hash": "c1ef8d7b83cdc4ddd4bda321c60d7a050e19e1e7"
+          }
+        },
+        {
+          "client_id": "126413075708-3el4vijpiue3od7mkegv6mk9h5ap0a4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwW5a9OBN2mZVcV8BYelKYZqJvP5LtzOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126413075708-3el4vijpiue3od7mkegv6mk9h5ap0a4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
