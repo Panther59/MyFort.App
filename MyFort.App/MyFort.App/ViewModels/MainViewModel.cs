@@ -107,8 +107,8 @@ namespace MyFort.App.ViewModels
 
 		private void NavigateToLogin()
 		{
-			var viewModel = this.viewLocator.GetViewModel<LoginViewModel>();
-			this.navigationService.PresentAsMainPage(viewModel);
+			LoginViewModel viewModel = null;
+			this.navigationService.PresentAsNavigatableMainPage<LoginViewModel>(ref viewModel);
 		}
 
 		/// <summary>

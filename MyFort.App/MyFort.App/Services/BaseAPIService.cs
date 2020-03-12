@@ -77,7 +77,7 @@ namespace MyFort.App.Services
 		{
 			var client = this.PreparedClient();
 			string json = JsonConvert.SerializeObject(body);
-			var httpContent = new StringContent(json);
+			var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 			var response = await client.PostAsync(url, httpContent);
 			var responseObj = new APIResponse();
 			responseObj.IsSuccess = response.IsSuccessStatusCode;

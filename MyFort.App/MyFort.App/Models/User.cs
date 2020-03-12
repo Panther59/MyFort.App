@@ -34,6 +34,29 @@ namespace MyFort.App.Models
 		/// <summary>
 		/// Gets or sets the Role
 		/// </summary>
-		public string Role { get; set; }
+		public TypeOfUser Type { get; set; }
+	}
+
+	public enum TypeOfUser
+	{
+		/// <summary>
+		/// Defines the RegularUser
+		/// </summary>
+		RegularUser = 1,
+
+		/// <summary>
+		/// Defines the Supervisor
+		/// </summary>
+		Supervisor = 2,
+
+		/// <summary>
+		/// Defines the Admin
+		/// </summary>
+		Admin = 4,
+
+		/// <summary>
+		/// Defines the ITAdmin
+		/// </summary>
+		ITAdmin = 8,
 	}
 }

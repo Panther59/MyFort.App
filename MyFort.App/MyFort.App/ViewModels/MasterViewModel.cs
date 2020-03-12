@@ -78,8 +78,8 @@ namespace MyFort.App.ViewModels
 		{
 			this.appSettings.Set("Token", null);
 			this.appSettings.Set("Name", null);
-			var viewModel = this.viewLocator.GetViewModel<LoginViewModel>();
-			this.navigationService.PresentAsMainPage(viewModel);
+			LoginViewModel viewModel = null;
+			this.navigationService.PresentAsNavigatableMainPage<LoginViewModel>(ref viewModel);
 		}
 
 		public async override Task BeforeFirstShown()

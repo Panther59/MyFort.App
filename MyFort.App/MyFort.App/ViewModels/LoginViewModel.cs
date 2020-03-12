@@ -44,6 +44,11 @@ namespace MyFort.App.ViewModels
 		private readonly IViewLocator viewLocator;
 
 		/// <summary>
+		/// Defines the registerCommand
+		/// </summary>
+		public ICommand registerCommand;
+
+		/// <summary>
 		/// Defines the email
 		/// </summary>
 		private string email;
@@ -106,6 +111,22 @@ namespace MyFort.App.ViewModels
 		}
 
 		/// <summary>
+		/// Gets the RegisterCommand
+		/// </summary>
+		public ICommand RegisterCommand
+		{
+			get
+			{
+				if (this.registerCommand == null)
+				{
+					this.registerCommand = new Command(() => this.Register());
+				}
+
+				return this.registerCommand;
+			}
+		}
+
+		/// <summary>
 		/// The CanLogin
 		/// </summary>
 		/// <returns>The <see cref="bool"/></returns>
@@ -135,6 +156,23 @@ namespace MyFort.App.ViewModels
 				{
 					await this.dialogService.ShowAlertAsync(response.Error?.Error ?? "Unable to login", "Login Failed", "OK");
 				}
+			}
+			catch (Exception ex)
+			{
+				this.IsBusy = false;
+				await this.dialogService.ShowAlertAsync(ex.Message, "Login Failed", "OK");
+			}
+		}
+
+		/// <summary>
+		/// The Register
+		/// </summary>
+		private async void Register()
+		{
+			try
+			{
+				var viewModel = this.viewLocator.GetViewModel<SignupViewModel>();
+				await this.navigationService.NavigateTo(viewModel);
 			}
 			catch (Exception ex)
 			{

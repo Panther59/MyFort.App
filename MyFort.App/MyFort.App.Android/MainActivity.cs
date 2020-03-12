@@ -9,6 +9,8 @@ using Android.OS;
 using Plugin.GoogleClient;
 using Acr.UserDialogs;
 using ImageCircle.Forms.Plugin.Droid;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Xamarin.Forms.Platform.Android;
 
 namespace MyFort.App.Droid
 {
@@ -36,6 +38,14 @@ namespace MyFort.App.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+            Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+            //if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+            //{
+            //    Window.DecorView.SystemUiVisibility = 0;
+            //    var statusBarHeightInfo = typeof(FormsAppCompatActivity).GetField("_statusBarHeight", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            //    statusBarHeightInfo.SetValue(this, 0);
+            //    this.Window.SetStatusBarColor(new Android.Graphics.Color(0, 0, 0, 255)); // Change color as required.
+            //}
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

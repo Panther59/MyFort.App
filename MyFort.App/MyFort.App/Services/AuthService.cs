@@ -44,11 +44,11 @@ namespace MyFort.App.Services
 		/// <summary>
 		/// The Register
 		/// </summary>
-		/// <param name="user">The user<see cref="AuthResponse"/></param>
+		/// <param name="user">The user<see cref="RegisterUser"/></param>
 		/// <returns>The <see cref="Task"/></returns>
-		public async Task Register(AuthResponse user)
+		public async Task<APIResponse> Register(RegisterUser user)
 		{
-			await this.PostAsync(this.BaseUrl + "users/register", user);
+			return await this.PostAsync(this.BaseUrl + "users/register", user);
 		}
 	}
 }

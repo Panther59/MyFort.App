@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+			 xmlns:ctrl="clr-namespace:MyFort.App.Controls"
+			 xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+			 xmlns:conv="clr-namespace:MyFort.App.Extensions"
+			 Title="Sign Up"
+             x:Class="MyFort.App.Views.SignupView">
+	<ContentPage.Content>
+		<ScrollView>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<StackLayout VerticalOptions="Center" IsVisible="{Binding IsGoogleSignedIn,Converter={conv:InverseBoolConverter}}">
+					<Button
+                    BackgroundColor="{DynamicResource LoginButtonColor}"
+                    Command="{Binding SignupWithGoogleCommand}"
+                    CornerRadius="50"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Sign up using Google"
+                    TextColor="{DynamicResource LoginButtonTextColor}" />
+				</StackLayout>
+
+				<StackLayout VerticalOptions="Center" IsVisible="{Binding IsGoogleSignedIn}">
+					<StackLayout Margin="10,0" VerticalOptions="Center">
+						<Image
+                    Margin="0,0,0,0"
+                    HorizontalOptions="Center"
+                    Source="my_fort.png"
+                    VerticalOptions="Start"
+                    WidthRequest="200" />
+						<Grid Padding="0,0,0,0">
+							<ctrl:IconFrame
+                        Padding="10,5,5,5"
+                        BackgroundColor="{DynamicResource LoginTextColor}"
+                        HasShadow="false"
+                        OutlineColor="{DynamicResource LoginTextColor}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<iconize:IconImage
+                                HeightRequest="20"
+                                HorizontalOptions="Start"
+                                Icon="md-perm-identity"
+                                IconColor="{DynamicResource LoginHintColor}"
+                                IconSize="20"
+                                WidthRequest="20" />
+
+									<ctrl:IconEntry
+                                x:Name="EntryName"
+                                Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                FontSize="15"
+                                HeightRequest="40"
+										IsReadOnly="True"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Full Name"
+                                PlaceholderColor="{DynamicResource LoginHintColor}"
+                                Text="{Binding FullName, Mode=TwoWay}"
+                                TextColor="{DynamicResource LoginTextColor}" />
+								</Grid>
+							</ctrl:IconFrame>
+						</Grid>
+						<Grid Padding="0,0,0,0">
+							<ctrl:IconFrame
+                        Padding="10,5,5,5"
+                        BackgroundColor="{DynamicResource LoginTextColor}"
+                        HasShadow="false"
+                        OutlineColor="{DynamicResource LoginTextColor}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<iconize:IconImage
+                                HeightRequest="20"
+                                HorizontalOptions="Start"
+                                Icon="md-email"
+                                IconColor="{DynamicResource LoginHintColor}"
+                                IconSize="20"
+                                WidthRequest="20" />
+
+									<ctrl:IconEntry
+                                x:Name="EntryEmail"
+                                Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                FontSize="15"
+                                HeightRequest="40"
+										IsReadOnly="True"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Email"
+                                PlaceholderColor="{DynamicResource LoginHintColor}"
+                                Text="{Binding Email, Mode=TwoWay}"
+                                TextColor="{DynamicResource LoginTextColor}" />
+								</Grid>
+							</ctrl:IconFrame>
+						</Grid>
+						<Grid Padding="0,0,0,0">
+							<ctrl:IconFrame
+                        Padding="10,5,5,5"
+                        BackgroundColor="{DynamicResource LoginTextColor}"
+                        HasShadow="false"
+                        OutlineColor="{DynamicResource LoginTextColor}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+
+									<iconize:IconImage
+                                HeightRequest="20"
+                                HorizontalOptions="Start"
+                                Icon="md-lock"
+                                IconColor="{DynamicResource LoginHintColor}"
+                                IconSize="20"
+                                WidthRequest="20" />
+
+									<ctrl:IconEntry
+                                x:Name="EntryPassword"
+                                Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                FontSize="15"
+                                HeightRequest="40"
+										Keyboard="Numeric"
+                                HorizontalOptions="FillAndExpand"
+                                IsPassword="True"
+                                Placeholder="Password"
+                                PlaceholderColor="{DynamicResource LoginHintColor}"
+                                Text="{Binding Password, Mode=TwoWay}"
+                                TextColor="{DynamicResource LoginTextColor}" />
+								</Grid>
+							</ctrl:IconFrame>
+						</Grid>
+						<Grid Padding="0,0,0,0">
+							<ctrl:IconFrame
+                        Padding="10,5,5,5"
+                        BackgroundColor="{DynamicResource LoginTextColor}"
+                        HasShadow="false"
+                        OutlineColor="{DynamicResource LoginTextColor}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+
+									<iconize:IconImage
+                                HeightRequest="20"
+                                HorizontalOptions="Start"
+                                Icon="md-lock"
+                                IconColor="{DynamicResource LoginHintColor}"
+                                IconSize="20"
+                                WidthRequest="20" />
+
+									<ctrl:IconEntry
+                                x:Name="EntryConfirmPassword"
+                                Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                FontSize="15"
+                                HeightRequest="40"
+										Keyboard="Numeric"
+                                HorizontalOptions="FillAndExpand"
+                                IsPassword="True"
+                                Placeholder="Confirm Password"
+                                PlaceholderColor="{DynamicResource LoginHintColor}"
+                                Text="{Binding ConfirmPassword, Mode=TwoWay}"
+                                TextColor="{DynamicResource LoginTextColor}" />
+								</Grid>
+							</ctrl:IconFrame>
+						</Grid>
+						<Button
+                    BackgroundColor="{DynamicResource LoginButtonColor}"
+                    Command="{Binding CreateAccountCommand}"
+                    CornerRadius="50"
+                    VerticalOptions="CenterAndExpand"
+                    Text="Create Account"
+                    TextColor="{DynamicResource LoginButtonTextColor}" />
+					</StackLayout>
+					<Grid>
+						
+					</Grid>
+				</StackLayout>
+			</Grid>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

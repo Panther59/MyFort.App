@@ -8,6 +8,10 @@
             xmlns:views="clr-namespace:MyFort.App.Views"
             x:Class="MyFort.App.Views.MainView">
 
-    
-    
+	<ContentPage.Content>
+		<Grid VerticalOptions="FillAndExpand">
+			<Image Aspect="AspectFill" Source="drinks.png" />
+		</Grid>
+	</ContentPage.Content>
+
 </ContentPage>

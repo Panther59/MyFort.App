@@ -10,13 +10,22 @@
 			 NavigationPage.HasNavigationBar="False"
              x:Class="MyFort.App.Views.LoginView">
 	<ContentPage.Content>
+		<ScrollView Orientation="Vertical">
 		<Grid VerticalOptions="FillAndExpand">
 			<Image Aspect="AspectFill" Source="drinks.png" />
 
-			<StackLayout VerticalOptions="Center">
+			
+			<StackLayout
+				VerticalOptions="Center">
 				<ActivityIndicator IsRunning="{Binding IsLoading}" Color="{DynamicResource Primary}" />
 			</StackLayout>
-			<StackLayout Margin="10,0" VerticalOptions="Center">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+			<StackLayout Grid.Row="1" Margin="10,0" VerticalOptions="Center">
 				<Image
                     Margin="0,0,0,0"
                     HorizontalOptions="Center"
@@ -88,6 +97,7 @@
                                 BackgroundColor="Transparent"
                                 FontSize="15"
                                 HeightRequest="40"
+								Keyboard="Numeric"
                                 HorizontalOptions="FillAndExpand"
                                 IsPassword="True"
                                 Placeholder="Password"
@@ -104,7 +114,17 @@
                     HorizontalOptions="FillAndExpand"
                     Text="Login"
                     TextColor="{DynamicResource LoginButtonTextColor}" />
+				
 			</StackLayout>
+				<Grid Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand">
+				<Label TextColor="White" Text="Click here to Sign up" Margin="30" FontSize="Medium">
+					<Label.GestureRecognizers>
+						<TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+					</Label.GestureRecognizers>
+				</Label>
+			</Grid>
+			</Grid>
+
 			<StackLayout VerticalOptions="Center">
 				<ActivityIndicator
                     IsRunning="True"
@@ -113,6 +133,7 @@
 			</StackLayout>
 			
 		</Grid>
+		</ScrollView>
 
 	</ContentPage.Content>
 </ContentPage>

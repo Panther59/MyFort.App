@@ -30,7 +30,7 @@ namespace MyFort.App.Services
 		/// <summary>
 		/// The Register
 		/// </summary>
-		/// <param name="user">The user<see cref="AuthResponse"/></param>
-		Task Register(AuthResponse user);
+		/// <param name="user">The user<see cref="RegisterUser"/></param>
+		Task<APIResponse> Register(RegisterUser user);
 	}
 }
