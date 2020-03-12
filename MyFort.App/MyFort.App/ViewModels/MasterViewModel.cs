@@ -71,6 +71,34 @@ namespace MyFort.App.ViewModels
 			}
 		}
 
+
+		public ICommand usersCommand;
+		public ICommand UsersCommand
+		{
+			get
+			{
+				if (this.usersCommand == null)
+				{
+					this.usersCommand = new Command(() => this.Users());
+				}
+
+				return this.usersCommand;
+			}
+		}
+
+		private void Users()
+		{
+			try
+			{
+				var vm = this.viewLocator.GetViewModel<UsersViewModel>();
+				this.navigationService.NavigateTo(vm);
+			}
+			catch (System.Exception)
+			{
+
+			}
+		}
+
 		/// <summary>
 		/// The Logout
 		/// </summary>

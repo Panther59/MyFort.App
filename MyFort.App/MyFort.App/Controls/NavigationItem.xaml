@@ -13,9 +13,10 @@
         Grid.Column="0"
         Icon="{Binding Icon, Source={x:Reference this}}"
         IconColor="{Binding TextColor, Source={x:Reference this}}"
-        IconSize="22" />
+        IconSize="40" />
     <Label
         Grid.Column="1"
+		FontSize="Medium"
         Text="{Binding Text, Source={x:Reference this}}"
         TextColor="{Binding TextColor, Source={x:Reference this}}" />
     <Grid.GestureRecognizers>

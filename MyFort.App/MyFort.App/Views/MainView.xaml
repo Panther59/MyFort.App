@@ -5,6 +5,7 @@
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
 			 BackgroundColor="Gray"
+			 NavigationPage.HasNavigationBar="False"
             xmlns:views="clr-namespace:MyFort.App.Views"
             x:Class="MyFort.App.Views.MainView">
 

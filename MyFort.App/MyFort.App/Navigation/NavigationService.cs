@@ -19,7 +19,20 @@ namespace MyFort.App.Navigation
 			_viewLocator = viewLocator;
 		}
 
-		private Xamarin.Forms.INavigation Navigator => _presentationRoot.MainRootPage.Navigation;
+		private Xamarin.Forms.INavigation Navigator
+		{
+			get
+			{
+				if (_presentationRoot.MainRootPage is MasterDetailPage && (_presentationRoot.MainRootPage as MasterDetailPage).Detail is NavigationPage)
+				{
+					return ((_presentationRoot.MainRootPage as MasterDetailPage).Detail as NavigationPage).Navigation;
+				}
+				else
+				{
+					return _presentationRoot.MainRootPage.Navigation;
+				}
+			}
+		}
 
 		public void PresentAsMainPage(BaseViewModel viewModel)
 		{

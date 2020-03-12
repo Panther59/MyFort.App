@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+			 Title="Users"
+             x:Class="MyFort.App.Views.UsersView">
+	<ContentPage.Content>
+
+		<ListView ItemsSource="{Binding Users}" HasUnevenRows="True" VerticalOptions="FillAndExpand">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<Grid Margin="5">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+								<Label Text="{Binding FirstName}" />
+								<Label  Grid.Column="1" Text="{Binding LastName}" />
+
+							</Grid>
+							<Label  Grid.Row="1" Text="{Binding Email}" />
+							<Label  Grid.Row="2" Text="{Binding Type}" />
+							<Button Grid.Row="4" Text="Modify" Command="{Binding ModifyUserCommand}" />
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+
+		</ListView>
+	</ContentPage.Content>
+</ContentPage>

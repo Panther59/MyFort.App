@@ -37,10 +37,10 @@
                     Text="Home"
                     TextColor="{DynamicResource DrawerMenuItemTextColor}" />
 				<ctrl:NavigationItem
-                    Command="{Binding GotoAboutCommand}"
+                    Command="{Binding UsersCommand}"
                     CommandParameter="2"
-                    Icon="md-info"
-                    Text="About"
+                    Icon="md-supervisor-account"
+                    Text="Users"
                     TextColor="{DynamicResource DrawerMenuItemTextColor}" />
 				<ContentView BackgroundColor="{DynamicResource DrawerMenuItemSeparatorColor}" HeightRequest="1" />
 				<ctrl:NavigationItem
