@@ -18,11 +18,30 @@ namespace MyFort.App.ViewModels
 	/// </summary>
 	public class LoginViewModel : BaseViewModel
 	{
+		/// <summary>
+		/// Defines the appSettings
+		/// </summary>
 		private readonly IAppSettings appSettings;
-		private readonly IDialogService dialogService;
+
+		/// <summary>
+		/// Defines the authService
+		/// </summary>
 		private readonly IAuthService authService;
-		private readonly IViewLocator viewLocator;
+
+		/// <summary>
+		/// Defines the dialogService
+		/// </summary>
+		private readonly IDialogService dialogService;
+
+		/// <summary>
+		/// Defines the navigationService
+		/// </summary>
 		private readonly INavigationService navigationService;
+
+		/// <summary>
+		/// Defines the viewLocator
+		/// </summary>
+		private readonly IViewLocator viewLocator;
 
 		/// <summary>
 		/// Defines the email
@@ -37,6 +56,11 @@ namespace MyFort.App.ViewModels
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LoginViewModel"/> class.
 		/// </summary>
+		/// <param name="appSettings">The appSettings<see cref="IAppSettings"/></param>
+		/// <param name="dialogService">The dialogService<see cref="IDialogService"/></param>
+		/// <param name="authService">The authService<see cref="IAuthService"/></param>
+		/// <param name="viewLocator">The viewLocator<see cref="IViewLocator"/></param>
+		/// <param name="navigationService">The navigationService<see cref="INavigationService"/></param>
 		public LoginViewModel(
 			IAppSettings appSettings,
 			IDialogService dialogService,
@@ -50,11 +74,6 @@ namespace MyFort.App.ViewModels
 			this.viewLocator = viewLocator;
 			this.navigationService = navigationService;
 			this.LoginCommand = new Command(async () => await this.Login());
-		}
-
-		private bool CanLogin()
-		{
-			return string.IsNullOrEmpty(Email) == false && string.IsNullOrEmpty(this.Password);
 		}
 
 		/// <summary>
@@ -87,6 +106,15 @@ namespace MyFort.App.ViewModels
 		}
 
 		/// <summary>
+		/// The CanLogin
+		/// </summary>
+		/// <returns>The <see cref="bool"/></returns>
+		private bool CanLogin()
+		{
+			return string.IsNullOrEmpty(Email) == false && string.IsNullOrEmpty(this.Password);
+		}
+
+		/// <summary>
 		/// The Login
 		/// </summary>
 		/// <returns>The <see cref="Task"/></returns>
@@ -94,17 +122,23 @@ namespace MyFort.App.ViewModels
 		{
 			try
 			{
+				this.IsBusy = true;
 				var response = await this.authService.Authenticate(new Models.AuthRequest { Email = this.Email, Password = this.Password });
-				if (response != null)
+				this.IsBusy = false;
+				if (response.IsSuccess)
 				{
-					this.appSettings.Set("Token", response.Token);
-					this.appSettings.Set("Name", response.User.FirstName + " " + response.User.LastName);
-					var viewModel = this.viewLocator.GetViewModel<HomeViewModel>();
-					await this.navigationService.NavigateTo(viewModel);
+					this.appSettings.Set("Token", response.Result.Token);
+					this.appSettings.Set("Name", response.Result.User.FirstName + " " + response.Result.User.LastName);
+					this.navigationService.MasterDetailPage<RootViewModel, MasterViewModel, HomeViewModel>();
+				}
+				else
+				{
+					await this.dialogService.ShowAlertAsync(response.Error?.Error ?? "Unable to login", "Login Failed", "OK");
 				}
 			}
 			catch (Exception ex)
 			{
+				this.IsBusy = false;
 				await this.dialogService.ShowAlertAsync(ex.Message, "Login Failed", "OK");
 			}
 		}

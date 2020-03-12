@@ -9,9 +9,9 @@ namespace MyFort.App.Services
 	{
 		public string Get(string key)
 		{
-			if (Application.Current.Properties.ContainsKey(key))
+			if (Application.Current.Properties.ContainsKey(key) && Application.Current.Properties[key] != null)
 			{
-				return Application.Current.Properties[key].ToString();
+				return Application.Current.Properties[key]?.ToString();
 			}
 			else
 			{
@@ -21,7 +21,14 @@ namespace MyFort.App.Services
 
 		public void Set(string key, string value)
 		{
-			Application.Current.Properties[key] = value;
+			if (value == null)
+			{
+				Application.Current.Properties.Remove(key);
+			}
+			else
+			{
+				Application.Current.Properties[key] = value;
+			}
 		}
 	}
 }

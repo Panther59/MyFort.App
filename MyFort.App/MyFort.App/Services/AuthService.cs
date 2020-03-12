@@ -15,11 +15,19 @@ namespace MyFort.App.Services
 	public class AuthService : BaseAPIService, IAuthService
 	{
 		/// <summary>
+		/// Initializes a new instance of the <see cref="AuthService"/> class.
+		/// </summary>
+		/// <param name="appSettings">The appSettings<see cref="IAppSettings"/></param>
+		public AuthService(IAppSettings appSettings) : base(appSettings)
+		{
+		}
+
+		/// <summary>
 		/// The Authenticate
 		/// </summary>
 		/// <param name="request">The request<see cref="AuthRequest"/></param>
 		/// <returns>The <see cref="Task{AuthResponse}"/></returns>
-		public async Task<AuthResponse> Authenticate(AuthRequest request)
+		public async Task<APIResponse<AuthResponse>> Authenticate(AuthRequest request)
 		{
 			return await this.PostAsync<AuthResponse>(this.BaseUrl + "users/authenticate", request);
 		}
@@ -28,7 +36,7 @@ namespace MyFort.App.Services
 		/// The CurrentUser
 		/// </summary>
 		/// <returns>The <see cref="Task{User}"/></returns>
-		public async Task<User> CurrentUser()
+		public async Task<APIResponse<User>> CurrentUser()
 		{
 			return await this.GetAsync<User>(this.BaseUrl + "users/current");
 		}

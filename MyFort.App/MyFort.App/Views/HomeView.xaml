@@ -4,10 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+				  Title="Home"
+			 BackgroundColor="{DynamicResource PrimaryDarkBackground}"
+			 NavigationPage.HasNavigationBar="True"
+				  xmlns:local="clr-namespace:MyFort.App.Views"
              x:Class="MyFort.App.Views.HomeView">
 	<ContentPage.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentPage.Content>
+		<Label Text="This is home page" />
+	</ContentPage.Content>
 </ContentPage>

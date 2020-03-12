@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Plugin.GoogleClient;
 using Acr.UserDialogs;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace MyFort.App.Droid
 {
@@ -23,6 +24,15 @@ namespace MyFort.App.Droid
             var clientId = "126413075708-3el4vijpiue3od7mkegv6mk9h5ap0a4n.apps.googleusercontent.com";
             GoogleClientManager.Initialize(this, null, clientId);
             UserDialogs.Init(this);
+            Plugin.Iconize.Iconize.Init();
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
+                          .With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
+                          .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule())
+                          .With(new Plugin.Iconize.Fonts.MaterialModule());
+            //FormsPlugin.Iconize.Droid.IconControls.Init();
+
+            ImageCircleRenderer.Init();
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

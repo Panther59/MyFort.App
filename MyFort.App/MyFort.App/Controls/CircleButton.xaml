@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="MyFort.App.Controls.CircleButton"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:forms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+    x:Name="this"
+    Margin="5"
+    BackgroundColor="Transparent"
+    HorizontalOptions="Center"
+    VerticalOptions="Center">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="20" />
+    </Grid.RowDefinitions>
+
+    <forms:SKCanvasView
+        x:Name="SkCanvasView"
+        BackgroundColor="Transparent"
+        HeightRequest="80"
+        HorizontalOptions="Center"
+        PaintSurface="CanvasView_OnPaintSurface"
+        VerticalOptions="Center"
+        WidthRequest="80" />
+    <iconize:IconImage
+        Grid.Row="0"
+        HorizontalOptions="Center"
+        Icon="{Binding Icon, Source={x:Reference this}}"
+        IconColor="{Binding IconColor, Source={x:Reference this}}"
+        IconSize="30"
+        VerticalOptions="Center" />
+    <Label
+        Grid.Row="1"
+        HorizontalOptions="Center"
+        Text="{Binding Text, Source={x:Reference this}}"
+        TextColor="{Binding TextColor, Source={x:Reference this}}"
+        VerticalOptions="Center" />
+
+    <Grid.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding Command, Source={x:Reference this}}" CommandParameter="{Binding CommandParameter, Source={x:Reference this}}" />
+    </Grid.GestureRecognizers>
+</Grid>

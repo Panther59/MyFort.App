@@ -4,25 +4,115 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+			 xmlns:ctrl="clr-namespace:MyFort.App.Controls"
+			  xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+			 xmlns:extension="clr-namespace:MyFort.App.Extensions"
+			 NavigationPage.HasNavigationBar="False"
              x:Class="MyFort.App.Views.LoginView">
 	<ContentPage.Content>
-		<StackLayout Orientation="Vertical" Padding="30" Spacing="40">
-			<BoxView HeightRequest="10"/>
-			<Frame BackgroundColor="#BF043055" HasShadow="False">
-				<StackLayout Orientation="Vertical" Spacing="10">
-					<Entry x:Name="Email" Text="{Binding Email}" Placeholder="Email"   
-                           PlaceholderColor="White" HeightRequest="40"   
-                           Keyboard="Email"  
-                           TextColor="White"/>
-					<Entry x:Name="Password" Text="{Binding Password}" Placeholder="Password"   
-                           PlaceholderColor="White" HeightRequest="40"
-                           IsPassword="True"  
-                           TextColor="White"/>
-				</StackLayout>
-			</Frame>
-			<Button Command="{Binding LoginCommand}" Text="Login" TextColor="White"  
-                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
-                    BackgroundColor="#088da5" />
-		</StackLayout>
+		<Grid VerticalOptions="FillAndExpand">
+			<Image Aspect="AspectFill" Source="drinks.png" />
+
+			<StackLayout VerticalOptions="Center">
+				<ActivityIndicator IsRunning="{Binding IsLoading}" Color="{DynamicResource Primary}" />
+			</StackLayout>
+			<StackLayout Margin="10,0" VerticalOptions="Center">
+				<Image
+                    Margin="0,0,0,0"
+                    HorizontalOptions="Center"
+                    Source="my_fort.png"
+                    VerticalOptions="Start"
+                    WidthRequest="200" />
+				<Grid Padding="0,0,0,0">
+					<ctrl:IconFrame
+                        Padding="10,5,5,5"
+                        BackgroundColor="{DynamicResource LoginTextColor}"
+                        HasShadow="false"
+                        OutlineColor="{DynamicResource LoginTextColor}">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+							<iconize:IconImage
+                                HeightRequest="20"
+                                HorizontalOptions="Start"
+                                Icon="md-email"
+                                IconColor="{DynamicResource LoginHintColor}"
+                                IconSize="20"
+                                WidthRequest="20" />
+
+							<ctrl:IconEntry
+                                x:Name="EntryUserName"
+                                Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                FontSize="15"
+                                HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Email"
+                                PlaceholderColor="{DynamicResource LoginHintColor}"
+                                Text="{Binding Email, Mode=TwoWay}"
+                                TextColor="{DynamicResource LoginTextColor}" />
+						</Grid>
+					</ctrl:IconFrame>
+				</Grid>
+				<Grid Padding="0,0,0,0">
+					<ctrl:IconFrame
+                        Padding="10,5,5,5"
+                        BackgroundColor="{DynamicResource LoginTextColor}"
+                        HasShadow="false"
+                        OutlineColor="{DynamicResource LoginTextColor}">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+							</Grid.ColumnDefinitions>
+
+							<iconize:IconImage
+                                HeightRequest="20"
+                                HorizontalOptions="Start"
+                                Icon="md-lock"
+                                IconColor="{DynamicResource LoginHintColor}"
+                                IconSize="20"
+                                WidthRequest="20" />
+
+							<ctrl:IconEntry
+                                x:Name="EntryPassword"
+                                Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                FontSize="15"
+                                HeightRequest="40"
+                                HorizontalOptions="FillAndExpand"
+                                IsPassword="True"
+                                Placeholder="Password"
+                                PlaceholderColor="{DynamicResource LoginHintColor}"
+                                Text="{Binding Password, Mode=TwoWay}"
+                                TextColor="{DynamicResource LoginTextColor}" />
+						</Grid>
+					</ctrl:IconFrame>
+				</Grid>
+				<Button
+                    BackgroundColor="{DynamicResource LoginButtonColor}"
+                    Command="{Binding LoginCommand}"
+                    CornerRadius="50"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Login"
+                    TextColor="{DynamicResource LoginButtonTextColor}" />
+			</StackLayout>
+			<StackLayout VerticalOptions="Center">
+				<ActivityIndicator
+                    IsRunning="True"
+                    IsVisible="{Binding IsBusy}"
+                    Color="Green" />
+			</StackLayout>
+			
+		</Grid>
+
 	</ContentPage.Content>
 </ContentPage>

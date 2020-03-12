@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+			 Title="Menu"
+			 xmlns:ctrl="clr-namespace:MyFort.App.Controls"
+			 xmlns:vm="clr-namespace:MyFort.App.ViewModels"
+             x:Class="MyFort.App.Views.MasterView"
+			 BackgroundColor="{DynamicResource DrawerMenuItemBackgroundColor}">
+	<ContentPage.Content>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="150" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+
+				<Image Aspect="AspectFill" HeightRequest="120" HorizontalOptions="CenterAndExpand" Source="my_fort.png" />
+			<Label Grid.Row="1"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding UserName}"
+				FontSize="Large"
+                TextColor="{DynamicResource DrawerMenuItemTextColor}"
+                VerticalOptions="End" />
+			</Grid>
+			<StackLayout Grid.Row="1" Spacing="15">
+				<ContentView BackgroundColor="{DynamicResource DrawerMenuItemSeparatorColor}" HeightRequest="1" />
+				<ctrl:NavigationItem
+                    Command="{Binding HomeCommand}"
+                    Icon="md-home"
+                    Text="Home"
+                    TextColor="{DynamicResource DrawerMenuItemTextColor}" />
+				<ctrl:NavigationItem
+                    Command="{Binding GotoAboutCommand}"
+                    CommandParameter="2"
+                    Icon="md-info"
+                    Text="About"
+                    TextColor="{DynamicResource DrawerMenuItemTextColor}" />
+				<ContentView BackgroundColor="{DynamicResource DrawerMenuItemSeparatorColor}" HeightRequest="1" />
+				<ctrl:NavigationItem
+                    Command="{Binding LogoutCommand}"
+                    CommandParameter="2"
+                    Icon="md-exit-to-app"
+                    Text="Logout"
+                    TextColor="{DynamicResource DrawerMenuItemTextColor}" />
+			</StackLayout>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

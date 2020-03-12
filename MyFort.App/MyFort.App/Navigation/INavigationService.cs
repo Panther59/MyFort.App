@@ -16,6 +16,17 @@ namespace MyFort.App.Navigation
 	public interface INavigationService
 	{
 		/// <summary>
+		/// The MasterDetailPage
+		/// </summary>
+		/// <typeparam name="TViewModel"></typeparam>
+		/// <typeparam name="TMasterViewModel"></typeparam>
+		/// <typeparam name="TDetailViewModel"></typeparam>
+		void MasterDetailPage<TViewModel, TMasterViewModel, TDetailViewModel>()
+			where TViewModel : BaseViewModel
+			where TMasterViewModel : BaseViewModel
+			where TDetailViewModel : BaseViewModel;
+
+		/// <summary>
 		/// Navigate to the previous item in the navigation stack
 		/// </summary>
 		/// <returns>The <see cref="Task"/></returns>
@@ -44,7 +55,7 @@ namespace MyFort.App.Navigation
 		/// Sets the viewmodel as the main page of the application, and wraps its page within a Navigation page
 		/// </summary>
 		/// <typeparam name="TViewModel"></typeparam>
-		/// <param name="">The <see cref="viewModel"/></param>
+		/// <param name="viewModel">The viewModel<see cref="TViewModel"/></param>
 		/// <returns>The <see cref="Page"/></returns>
 		Page PresentAsNavigatableMainPage<TViewModel>(ref TViewModel viewModel) where TViewModel : BaseViewModel;
 	}

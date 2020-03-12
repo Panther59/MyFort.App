@@ -6,15 +6,35 @@
              mc:Ignorable="d"
              x:Class="MyFort.App.App">
 
-    <Application.Resources>
-        <ResourceDictionary>
-            <!--Global Styles-->
-            <Color x:Key="NavigationPrimary">#2196F3</Color>
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="BarTextColor" Value="White" />
-            </Style>
-        </ResourceDictionary>
-    </Application.Resources>
-    
+	<Application.Resources>
+		<ResourceDictionary>
+			<Color x:Key="PrimaryLight">#6CA5F3</Color>
+			<Color x:Key="Primary">#448FF5</Color>
+			<Color x:Key="PrimaryDarkBackground">#06101E</Color>
+			<Color x:Key="PrimaryLight2">#6CA5F3</Color>
+			<Color x:Key="PrimaryButtonForeColor">White</Color>
+
+			<Color x:Key="PrimaryDark">#217AF3</Color>
+			<Color x:Key="Accent">#96d1ff</Color>
+			<Color x:Key="LightBackgroundColor">#FAFAFA</Color>
+			<Color x:Key="DarkBackgroundColor">#C0C0C0</Color>
+			<Color x:Key="MediumGrayTextColor">#4d4d4d</Color>
+			<Color x:Key="LightTextColor">#999999</Color>
+
+			<Color x:Key="DrawerMenuItemBackgroundColor">#4d4d4d</Color>
+			<Color x:Key="DrawerMenuItemTextColor">White</Color>
+			<Color x:Key="DrawerMenuItemSeparatorColor">Gray</Color>
+			<Style TargetType="NavigationPage">
+				<Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
+				<Setter Property="BarTextColor" Value="White" />
+			</Style>
+
+			<Color x:Key="LoginTextColor">Black</Color>
+			<Color x:Key="LoginHintColor">Gray</Color>
+			<Color x:Key="LoginButtonColor">#E1501A</Color>
+			<Color x:Key="LoginButtonTextColor">White</Color>
+
+		</ResourceDictionary>
+	</Application.Resources>
+
 </Application>

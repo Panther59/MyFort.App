@@ -18,6 +18,10 @@ namespace MyFort.App
 		public App()
 		{
 			InitializeComponent();
+			Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
+						  .With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
+						  .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule())
+						  .With(new Plugin.Iconize.Fonts.MaterialModule());
 			RegisterService();
 
 			MainViewModel viewModel = null;
@@ -42,6 +46,7 @@ namespace MyFort.App
 			Container.RegisterType<AboutViewModel>();
 			Container.RegisterType<LoginViewModel>();
 			Container.RegisterType<HomeViewModel>();
+			Container.RegisterType<MasterViewModel>();
 		}
 
 		protected override void OnStart()

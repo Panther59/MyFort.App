@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MyFort.App.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -10,21 +11,40 @@ namespace MyFort.App.Services
 {
 	public abstract class BaseAPIService
 	{
+		private readonly IAppSettings appSettings;
+
+		public BaseAPIService(IAppSettings appSettings)
+		{
+			this.appSettings = appSettings;
+		}
+
 		public string BaseUrl
 		{
 			get => "https://UtkarshLaptop:7001/api/";
 		}
 
-		public async Task<T> GetAsync<T>(string url)
+		public async Task<APIResponse<T>> GetAsync<T>(string url)
 		{
 			var client = this.PreparedClient();
 
 			var response = await client.GetAsync(url);
 			var responseText = await response.Content.ReadAsStringAsync();
-			return JsonConvert.DeserializeObject<T>(responseText);
+			var responseObj = new APIResponse<T>();
+			responseObj.IsSuccess = response.IsSuccessStatusCode;
+			responseObj.StatusCode = (int)response.StatusCode;
+			if (response.IsSuccessStatusCode)
+			{
+				responseObj.Result = JsonConvert.DeserializeObject<T>(responseText);
+			}
+			else
+			{
+				responseObj.Error = JsonConvert.DeserializeObject<APIError>(responseText);
+			}
+
+			return responseObj;
 		}
 
-		public async Task<T> PostAsync<T>(string url, object body) where T : class
+		public async Task<APIResponse<T>> PostAsync<T>(string url, object body) where T : class
 		{
 			try
 			{
@@ -33,7 +53,19 @@ namespace MyFort.App.Services
 				var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 				var response = await client.PostAsync(url, httpContent);
 				var responseText = await response.Content.ReadAsStringAsync();
-				return JsonConvert.DeserializeObject<T>(responseText);
+				var responseObj = new APIResponse<T>();
+				responseObj.IsSuccess = response.IsSuccessStatusCode;
+				responseObj.StatusCode = (int)response.StatusCode;
+				if (response.IsSuccessStatusCode)
+				{
+					responseObj.Result = JsonConvert.DeserializeObject<T>(responseText);
+				}
+				else
+				{
+					responseObj.Error = JsonConvert.DeserializeObject<APIError>(responseText);
+				}
+
+				return responseObj;
 			}
 			catch (Exception ex)
 			{
@@ -41,12 +73,22 @@ namespace MyFort.App.Services
 			}
 		}
 
-		public async Task PostAsync(string url, object body)
+		public async Task<APIResponse> PostAsync(string url, object body)
 		{
 			var client = this.PreparedClient();
 			string json = JsonConvert.SerializeObject(body);
 			var httpContent = new StringContent(json);
 			var response = await client.PostAsync(url, httpContent);
+			var responseObj = new APIResponse();
+			responseObj.IsSuccess = response.IsSuccessStatusCode;
+			responseObj.StatusCode = (int)response.StatusCode;
+			if (!response.IsSuccessStatusCode)
+			{
+				var responseText = await response.Content.ReadAsStringAsync();
+				responseObj.Error = JsonConvert.DeserializeObject<APIError>(responseText);
+			}
+
+			return responseObj;
 		}
 
 		private HttpClient PreparedClient()
@@ -58,7 +100,6 @@ namespace MyFort.App.Services
 			//filter.IgnorableServerCertificateErrors.Add(ChainValidationResult.InvalidName);
 
 			HttpClientHandler handler = new HttpClientHandler();
-
 			//not sure about this one, but I think it should work to allow all certificates:
 			handler.ServerCertificateCustomValidationCallback += (sender, cert, chaun, ssPolicyError) =>
 			{
@@ -68,6 +109,10 @@ namespace MyFort.App.Services
 			ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
 			HttpClient client = new HttpClient(handler);
+			if (this.appSettings.Get("Token") != null)
+			{
+				client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", this.appSettings.Get("Token"));
+			}
 
 			return client;
 		}

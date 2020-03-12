@@ -19,13 +19,13 @@ namespace MyFort.App.Services
 		/// </summary>
 		/// <param name="request">The request<see cref="AuthRequest"/></param>
 		/// <returns>The <see cref="AuthResponse"/></returns>
-		Task<AuthResponse> Authenticate(AuthRequest request);
+		Task<APIResponse<AuthResponse>> Authenticate(AuthRequest request);
 
 		/// <summary>
 		/// The CurrentUser
 		/// </summary>
 		/// <returns>The <see cref="User"/></returns>
-		Task<User> CurrentUser();
+		Task<APIResponse<User>> CurrentUser();
 
 		/// <summary>
 		/// The Register
