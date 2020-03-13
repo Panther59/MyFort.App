@@ -7,3 +7,5 @@
 /MyFort.App/MyFort.App/obj
 /MyFort.App/MyFort.App.Android/bin/Debug
 /MyFort.App/MyFort.App.Android/obj
+/MyFort.App/MyFort.App/bin/Release/netstandard2.0
+/MyFort.App/MyFort.App.Android/bin/Release

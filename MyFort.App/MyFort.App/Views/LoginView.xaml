@@ -130,7 +130,7 @@
 						VerticalOptions="EndAndExpand">
 						<Button
 							Margin="30"
-							BackgroundColor="rgba(255, 255, 255, 0.38)"
+							BackgroundColor="#5CFFFFFF"
 							Command="{Binding RegisterCommand}"
 							FontSize="Medium"
 							Text="Click here to Sign up" />
