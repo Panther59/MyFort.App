@@ -1,138 +1,148 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-			 xmlns:ctrl="clr-namespace:MyFort.App.Controls"
-			  xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-			 xmlns:extension="clr-namespace:MyFort.App.Extensions"
-			 NavigationPage.HasNavigationBar="False"
-             x:Class="MyFort.App.Views.LoginView">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+	x:Class="MyFort.App.Views.LoginView"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:ctrl="clr-namespace:MyFort.App.Controls"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:extension="clr-namespace:MyFort.App.Extensions"
+	xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	NavigationPage.HasNavigationBar="False"
+	mc:Ignorable="d">
 	<ContentPage.Content>
 		<ScrollView Orientation="Vertical">
-		<Grid VerticalOptions="FillAndExpand">
-			<Image Aspect="AspectFill" Source="drinks.png" />
+			<Grid VerticalOptions="FillAndExpand">
+				<Image Aspect="AspectFill" Source="drinks.png" />
 
-			
-			<StackLayout
-				VerticalOptions="Center">
-				<ActivityIndicator IsRunning="{Binding IsLoading}" Color="{DynamicResource Primary}" />
-			</StackLayout>
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="*" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="*" />
-				</Grid.RowDefinitions>
-			<StackLayout Grid.Row="1" Margin="10,0" VerticalOptions="Center">
-				<Image
-                    Margin="0,0,0,0"
-                    HorizontalOptions="Center"
-                    Source="my_fort.png"
-                    VerticalOptions="Start"
-                    WidthRequest="200" />
-				<Grid Padding="0,0,0,0">
-					<ctrl:IconFrame
-                        Padding="10,5,5,5"
-                        BackgroundColor="{DynamicResource LoginTextColor}"
-                        HasShadow="false"
-                        OutlineColor="{DynamicResource LoginTextColor}">
-						<Grid>
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto" />
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
-							<iconize:IconImage
-                                HeightRequest="20"
-                                HorizontalOptions="Start"
-                                Icon="md-email"
-                                IconColor="{DynamicResource LoginHintColor}"
-                                IconSize="20"
-                                WidthRequest="20" />
 
-							<ctrl:IconEntry
-                                x:Name="EntryUserName"
-                                Grid.Column="1"
-                                BackgroundColor="Transparent"
-                                FontSize="15"
-                                HeightRequest="40"
-                                HorizontalOptions="FillAndExpand"
-                                Placeholder="Email"
-                                PlaceholderColor="{DynamicResource LoginHintColor}"
-                                Text="{Binding Email, Mode=TwoWay}"
-                                TextColor="{DynamicResource LoginTextColor}" />
+				<StackLayout VerticalOptions="Center">
+					<ActivityIndicator IsRunning="{Binding IsLoading}" Color="{DynamicResource Primary}" />
+				</StackLayout>
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<StackLayout
+						Grid.Row="1"
+						Margin="10,0"
+						VerticalOptions="Center">
+						<Image
+							Margin="0,0,0,0"
+							HorizontalOptions="Center"
+							Source="my_fort.png"
+							VerticalOptions="Start"
+							WidthRequest="200" />
+						<Grid Padding="0,0,0,0">
+							<ctrl:IconFrame
+								Padding="10,5,5,5"
+								BackgroundColor="{DynamicResource LoginTextColor}"
+								HasShadow="false"
+								OutlineColor="{DynamicResource LoginTextColor}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
+									<iconize:IconImage
+										HeightRequest="20"
+										HorizontalOptions="Start"
+										Icon="md-email"
+										IconColor="{DynamicResource LoginHintColor}"
+										IconSize="20"
+										WidthRequest="20" />
+
+									<ctrl:IconEntry
+										x:Name="EntryUserName"
+										Grid.Column="1"
+										BackgroundColor="Transparent"
+										FontSize="15"
+										HeightRequest="40"
+										HorizontalOptions="FillAndExpand"
+										Placeholder="Email"
+										PlaceholderColor="{DynamicResource LoginHintColor}"
+										Text="{Binding Email, Mode=TwoWay}"
+										TextColor="{DynamicResource LoginTextColor}" />
+								</Grid>
+							</ctrl:IconFrame>
 						</Grid>
-					</ctrl:IconFrame>
-				</Grid>
-				<Grid Padding="0,0,0,0">
-					<ctrl:IconFrame
-                        Padding="10,5,5,5"
-                        BackgroundColor="{DynamicResource LoginTextColor}"
-                        HasShadow="false"
-                        OutlineColor="{DynamicResource LoginTextColor}">
-						<Grid>
-							<Grid.RowDefinitions>
-								<RowDefinition Height="Auto" />
-							</Grid.RowDefinitions>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
+						<Grid Padding="0,0,0,0">
+							<ctrl:IconFrame
+								Padding="10,5,5,5"
+								BackgroundColor="{DynamicResource LoginTextColor}"
+								HasShadow="false"
+								OutlineColor="{DynamicResource LoginTextColor}">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="*" />
+									</Grid.ColumnDefinitions>
 
-							<iconize:IconImage
-                                HeightRequest="20"
-                                HorizontalOptions="Start"
-                                Icon="md-lock"
-                                IconColor="{DynamicResource LoginHintColor}"
-                                IconSize="20"
-                                WidthRequest="20" />
+									<iconize:IconImage
+										HeightRequest="20"
+										HorizontalOptions="Start"
+										Icon="md-lock"
+										IconColor="{DynamicResource LoginHintColor}"
+										IconSize="20"
+										WidthRequest="20" />
 
-							<ctrl:IconEntry
-                                x:Name="EntryPassword"
-                                Grid.Column="1"
-                                BackgroundColor="Transparent"
-                                FontSize="15"
-                                HeightRequest="40"
-								Keyboard="Numeric"
-                                HorizontalOptions="FillAndExpand"
-                                IsPassword="True"
-                                Placeholder="Password"
-                                PlaceholderColor="{DynamicResource LoginHintColor}"
-                                Text="{Binding Password, Mode=TwoWay}"
-                                TextColor="{DynamicResource LoginTextColor}" />
+									<ctrl:IconEntry
+										x:Name="EntryPassword"
+										Grid.Column="1"
+										BackgroundColor="Transparent"
+										FontSize="15"
+										HeightRequest="40"
+										HorizontalOptions="FillAndExpand"
+										IsPassword="True"
+										Keyboard="Numeric"
+										Placeholder="Password"
+										PlaceholderColor="{DynamicResource LoginHintColor}"
+										Text="{Binding Password, Mode=TwoWay}"
+										TextColor="{DynamicResource LoginTextColor}" />
+								</Grid>
+							</ctrl:IconFrame>
 						</Grid>
-					</ctrl:IconFrame>
-				</Grid>
-				<Button
-                    BackgroundColor="{DynamicResource LoginButtonColor}"
-                    Command="{Binding LoginCommand}"
-                    CornerRadius="50"
-                    HorizontalOptions="FillAndExpand"
-                    Text="Login"
-                    TextColor="{DynamicResource LoginButtonTextColor}" />
-				
-			</StackLayout>
-				<Grid Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand">
-				<Label TextColor="White" Text="Click here to Sign up" Margin="30" FontSize="Medium">
-					<Label.GestureRecognizers>
-						<TapGestureRecognizer Command="{Binding RegisterCommand}"/>
-					</Label.GestureRecognizers>
-				</Label>
-			</Grid>
-			</Grid>
+						<Button
+							BackgroundColor="{DynamicResource LoginButtonColor}"
+							Command="{Binding LoginCommand}"
+							CornerRadius="50"
+							HorizontalOptions="FillAndExpand"
+							Text="Login"
+							TextColor="{DynamicResource LoginButtonTextColor}" />
 
-			<StackLayout VerticalOptions="Center">
-				<ActivityIndicator
-                    IsRunning="True"
-                    IsVisible="{Binding IsBusy}"
-                    Color="Green" />
-			</StackLayout>
-			
-		</Grid>
+					</StackLayout>
+					<Grid
+						Grid.Row="2"
+						HorizontalOptions="CenterAndExpand"
+						VerticalOptions="EndAndExpand">
+						<Label
+							Margin="30"
+							FontSize="Medium"
+							Text="Click here to Sign up"
+							TextColor="White">
+							<Label.GestureRecognizers>
+								<TapGestureRecognizer Command="{Binding RegisterCommand}" />
+							</Label.GestureRecognizers>
+						</Label>
+					</Grid>
+				</Grid>
+
+				<StackLayout VerticalOptions="Center">
+					<ActivityIndicator
+						IsRunning="True"
+						IsVisible="{Binding IsBusy}"
+						Color="Green" />
+				</StackLayout>
+
+			</Grid>
 		</ScrollView>
 
 	</ContentPage.Content>

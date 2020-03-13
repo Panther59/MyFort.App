@@ -43,6 +43,14 @@ namespace MyFort.App.Droid.Renderers
         {
             base.OnElementChanged(e);
             this.SetBackgroundDrawable(Resources.GetDrawable(Droid.Resource.Drawable.blue_resct));
+            e.NewElement.Unfocused += (sender, evt) =>
+            {
+            this.SetBackgroundDrawable(Resources.GetDrawable(Droid.Resource.Drawable.blue_resct));
+            };
+            e.NewElement.Focused += (sender, evt) =>
+            {
+                this.SetBackgroundDrawable(Resources.GetDrawable(Droid.Resource.Drawable.blue_resct_focus));
+            };
         }
 
         #endregion

@@ -1,14 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-			 Title="Users"
-             x:Class="MyFort.App.Views.UsersView">
+<ContentPage
+	x:Class="MyFort.App.Views.UsersView"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:views="clr-namespace:MyFort.App.Views"
+	x:Name="UserPage"
+	Title="Users"
+	mc:Ignorable="d">
 	<ContentPage.Content>
 
-		<ListView ItemsSource="{Binding Users}" HasUnevenRows="True" VerticalOptions="FillAndExpand">
+		<ListView
+			HasUnevenRows="True"
+			ItemsSource="{Binding Users}"
+			VerticalOptions="FillAndExpand">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>
@@ -26,12 +32,16 @@
 									<ColumnDefinition Width="Auto" />
 								</Grid.ColumnDefinitions>
 								<Label Text="{Binding FirstName}" />
-								<Label  Grid.Column="1" Text="{Binding LastName}" />
+								<Label Grid.Column="1" Text="{Binding LastName}" />
 
 							</Grid>
-							<Label  Grid.Row="1" Text="{Binding Email}" />
-							<Label  Grid.Row="2" Text="{Binding Type}" />
-							<Button Grid.Row="4" Text="Modify" Command="{Binding ModifyUserCommand}" />
+							<Label Grid.Row="1" Text="{Binding Email}" />
+							<Label Grid.Row="2" Text="{Binding Type}" />
+							<Button
+								Grid.Row="4"
+								Command="{Binding BindingContext.ModifyUserCommand, Source={x:Reference Name=UserPage}}"
+								CommandParameter="{Binding}"
+								Text="Modify" />
 						</Grid>
 					</ViewCell>
 				</DataTemplate>

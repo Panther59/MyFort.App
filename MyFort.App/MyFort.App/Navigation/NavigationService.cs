@@ -120,6 +120,15 @@ namespace MyFort.App.Navigation
 
 			await viewModel.BeforeFirstShown();
 
+			if (Xamarin.Forms.Application.Current.MainPage is MasterDetailPage masterDetailPage)
+			{
+				masterDetailPage.IsPresented = false;
+			}
+			else if (Xamarin.Forms.Application.Current.MainPage is NavigationPage navigationPage && navigationPage.CurrentPage is MasterDetailPage nestedMasterDetail)
+			{
+				nestedMasterDetail.IsPresented = false;
+			}
+
 			await Navigator.PushAsync(page);
 		}
 

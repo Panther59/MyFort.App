@@ -1,25 +1,31 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Grid
-    x:Class="MyFort.App.Controls.NavigationItem"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
-    x:Name="this">
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="50" />
-        <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
-    <iconize:IconImage
-        Grid.Column="0"
-        Icon="{Binding Icon, Source={x:Reference this}}"
-        IconColor="{Binding TextColor, Source={x:Reference this}}"
-        IconSize="40" />
-    <Label
-        Grid.Column="1"
-		FontSize="Medium"
-        Text="{Binding Text, Source={x:Reference this}}"
-        TextColor="{Binding TextColor, Source={x:Reference this}}" />
-    <Grid.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding Command, Source={x:Reference this}}" CommandParameter="{Binding CommandParameter, Source={x:Reference this}}" />
-    </Grid.GestureRecognizers>
+	x:Class="MyFort.App.Controls.NavigationItem"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:behaviors="clr-namespace:MyFort.App.Behavior"
+	xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+	x:Name="this">
+	<Grid Padding="10">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="50" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<iconize:IconImage
+			Grid.Column="0"
+			Icon="{Binding Icon, Source={x:Reference this}}"
+			IconColor="{Binding TextColor, Source={x:Reference this}}"
+			IconSize="40" />
+		<Label
+			Grid.Column="1"
+			FontSize="Medium"
+			Text="{Binding Text, Source={x:Reference this}}"
+			TextColor="{Binding TextColor, Source={x:Reference this}}" />
+		<Grid.Behaviors>
+			<behaviors:ViewTappedButtonBehavior
+				AnimationType="Fade"
+				Command="{Binding Command, Source={x:Reference this}}"
+				CommandParameter="{Binding CommandParameter, Source={x:Reference this}}" />
+		</Grid.Behaviors>
+	</Grid>
 </Grid>

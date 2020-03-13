@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="MyFort.App.Views.UserDetailView"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:ctrl="clr-namespace:MyFort.App.Controls"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:enum="clr-namespace:MyFort.App.Models"
+	xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="{Binding Title}"
+	mc:Ignorable="d">
+	<ContentPage.Content>
+		<Grid VerticalOptions="StartAndExpand">
+			<StackLayout Margin="10,0" VerticalOptions="StartAndExpand">
+
+				<Label Text="First Name" />
+				<Entry
+					x:Name="EntryFirstName"
+					Grid.Column="1"
+					BackgroundColor="Transparent"
+					FontSize="15"
+					HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					Placeholder="First Name"
+					PlaceholderColor="{DynamicResource LoginHintColor}"
+					Text="{Binding User.FirstName, Mode=TwoWay}"
+					TextColor="{DynamicResource LoginTextColor}" />
+				<Label Text="Last Name" />
+				<Entry
+					x:Name="EntryLastName"
+					BackgroundColor="Transparent"
+					FontSize="15"
+					HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					Placeholder="Password"
+					PlaceholderColor="{DynamicResource LoginHintColor}"
+					Text="{Binding User.LastName, Mode=TwoWay}"
+					TextColor="{DynamicResource LoginTextColor}" />
+				<Label Text="Email" />
+				<Entry
+					x:Name="EntryEmail"
+					Grid.Column="1"
+					BackgroundColor="Transparent"
+					FontSize="15"
+					HeightRequest="40"
+					HorizontalOptions="FillAndExpand"
+					Keyboard="Email"
+					Placeholder="Email"
+					PlaceholderColor="{DynamicResource LoginHintColor}"
+					Text="{Binding User.Email, Mode=TwoWay}"
+					TextColor="{DynamicResource LoginTextColor}" />
+
+				<Label Text="Type" />
+				<ctrl:EnumBindablePicker x:TypeArguments="enum:TypeOfUser" SelectedItem="{Binding User.Type, Mode=TwoWay}" />
+				<Grid Padding="0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+					<Label Text="Is Active" />
+					<Switch Grid.Column="1" IsToggled="{Binding User.IsActive, Mode=TwoWay}" />
+				</Grid>
+				<Button
+					BackgroundColor="{DynamicResource LoginButtonColor}"
+					Command="{Binding SaveUserCommand}"
+					CornerRadius="50"
+					HorizontalOptions="FillAndExpand"
+					Text="Save"
+					TextColor="{DynamicResource LoginButtonTextColor}" />
+
+			</StackLayout>
+			<StackLayout IsVisible="{Binding IsBusy}" VerticalOptions="CenterAndExpand">
+				<ActivityIndicator HorizontalOptions="Center" IsRunning="True" />
+				<Label HorizontalOptions="CenterAndExpand" Text="Saving user" />
+			</StackLayout>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

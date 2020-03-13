@@ -7,6 +7,7 @@
 namespace MyFort.App.ViewModels
 {
 	using MyFort.App.Models;
+	using MyFort.App.Navigation;
 	using MyFort.App.Services;
 	using System;
 	using System.Collections.ObjectModel;
@@ -20,9 +21,19 @@ namespace MyFort.App.ViewModels
 	public class UsersViewModel : BaseViewModel
 	{
 		/// <summary>
+		/// Defines the navigationService
+		/// </summary>
+		private readonly INavigationService navigationService;
+
+		/// <summary>
 		/// Defines the usersService
 		/// </summary>
 		private readonly IUsersService usersService;
+
+		/// <summary>
+		/// Defines the viewLocator
+		/// </summary>
+		private readonly IViewLocator viewLocator;
 
 		/// <summary>
 		/// Defines the modifyUserCommand
@@ -38,9 +49,16 @@ namespace MyFort.App.ViewModels
 		/// Initializes a new instance of the <see cref="UsersViewModel"/> class.
 		/// </summary>
 		/// <param name="usersService">The usersService<see cref="IUsersService"/></param>
-		public UsersViewModel(IUsersService usersService)
+		/// <param name="viewLocator">The viewLocator<see cref="IViewLocator"/></param>
+		/// <param name="navigationService">The navigationService<see cref="INavigationService"/></param>
+		public UsersViewModel(
+			IUsersService usersService,
+			IViewLocator viewLocator,
+			INavigationService navigationService)
 		{
 			this.usersService = usersService;
+			this.viewLocator = viewLocator;
+			this.navigationService = navigationService;
 		}
 
 		/// <summary>
@@ -97,6 +115,9 @@ namespace MyFort.App.ViewModels
 		/// <param name="user">The user<see cref="User"/></param>
 		private void ModifyUser(User user)
 		{
+			var vm = this.viewLocator.GetViewModel<UserDetailViewModel>();
+			vm.User = user;
+			this.navigationService.NavigateTo(vm);
 		}
 	}
 }

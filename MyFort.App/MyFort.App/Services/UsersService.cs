@@ -32,7 +32,7 @@ namespace MyFort.App.Services
 		/// <inheritdoc/>
 		public async Task<APIResponse> UpdateUser(User user)
 		{
-			return await this.PostAsync(this.BaseUrl + "users", user);
+			return await this.PostAsync(this.BaseUrl + "users/update", user);
 		}
 	}
 }

@@ -4,6 +4,9 @@
 // <author>UTKARSHLAPTOP\Utkarsh</author>
 // <date>2020-03-11</date>
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace MyFort.App.Models
 {
 	/// <summary>
@@ -14,18 +17,22 @@ namespace MyFort.App.Models
 		/// <summary>
 		/// Defines the RegularUser
 		/// </summary>
+		[Display(Description = "Regular")]
 		RegularUser = 1,
 		/// <summary>
 		/// Defines the Supervisor
 		/// </summary>
+		[Display(Description = "Supervisor")]
 		Supervisor = 2,
 		/// <summary>
 		/// Defines the Admin
 		/// </summary>
+		[Display(Description = "Admin")]
 		Admin = 4,
 		/// <summary>
 		/// Defines the ITAdmin
 		/// </summary>
+		[Display(Description = "IT Admin")]
 		ITAdmin = 8,
 	}
 

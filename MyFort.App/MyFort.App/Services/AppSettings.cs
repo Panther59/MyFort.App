@@ -29,6 +29,8 @@ namespace MyFort.App.Services
 			{
 				Application.Current.Properties[key] = value;
 			}
+
+			Application.Current.SavePropertiesAsync();
 		}
 	}
 }
