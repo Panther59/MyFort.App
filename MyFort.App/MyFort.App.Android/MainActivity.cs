@@ -31,22 +31,16 @@ namespace MyFort.App.Droid
                           .With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
                           .With(new Plugin.Iconize.Fonts.FontAwesomeSolidModule())
                           .With(new Plugin.Iconize.Fonts.MaterialModule());
-            //FormsPlugin.Iconize.Droid.IconControls.Init();
 
             ImageCircleRenderer.Init();
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
             LoadApplication(new App());
             Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
-            //if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
-            //{
-            //    Window.DecorView.SystemUiVisibility = 0;
-            //    var statusBarHeightInfo = typeof(FormsAppCompatActivity).GetField("_statusBarHeight", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-            //    statusBarHeightInfo.SetValue(this, 0);
-            //    this.Window.SetStatusBarColor(new Android.Graphics.Color(0, 0, 0, 255)); // Change color as required.
-            //}
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

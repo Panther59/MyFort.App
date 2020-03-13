@@ -69,8 +69,8 @@ namespace MyFort.App.Droid.Renderers
 					GradientDrawable gd = new GradientDrawable();
 					gd.SetColor(global::Android.Graphics.Color.Transparent);
 					this.Control.SetBackgroundDrawable(gd);
-					gd.SetStroke(1, global::Android.Graphics.Color.Orange);
-					Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Orange));
+					gd.SetStroke(1, global::Android.Graphics.Color.LightBlue);
+					Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.LightBlue));
 				};
 			}
 		}

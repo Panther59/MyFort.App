@@ -193,6 +193,17 @@ namespace MyFort.App.ViewModels
 		{
 			try
 			{
+				if (string.IsNullOrEmpty(Password) || Password.Length < 6)
+				{
+					await this.dialogService.ShowAlertAsync("Enter valid password containing at least 6 digits", "Sign Up", "OK");
+				}
+
+				if (this.Password != this.ConfirmPassword)
+				{
+					await this.dialogService.ShowAlertAsync("Both passwords dont match, please type again", "Sign Up", "OK");
+				}
+
+				this.IsBusy = true;
 				var request = new RegisterUser
 				{
 					Password = this.Password,
@@ -205,6 +216,7 @@ namespace MyFort.App.ViewModels
 				};
 
 				var response = await this.authService.Register(request);
+				this.IsBusy = false;
 				if (response.IsSuccess)
 				{
 					await this.dialogService.ShowAlertAsync("Your account has been created, however please reach out to Admin to activate your account", "Sign Up", "OK");
@@ -217,6 +229,7 @@ namespace MyFort.App.ViewModels
 			}
 			catch (Exception ex)
 			{
+				this.IsBusy = false;
 				await this.dialogService.ShowAlertAsync(ex.Message, "Sign Up", "OK");
 			}
 		}

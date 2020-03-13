@@ -11,66 +11,45 @@
 		<Grid VerticalOptions="StartAndExpand">
 			<StackLayout Margin="10,0" VerticalOptions="StartAndExpand">
 
-				<Label Text="Name *" />
 				<Entry
 					x:Name="EntryName"
-					Grid.Column="1"
-					BackgroundColor="Transparent"
-					FontSize="15"
-					HeightRequest="40"
 					HorizontalOptions="FillAndExpand"
-					Placeholder="Name"
+					Placeholder="Name *"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding Outlet.Name, Mode=TwoWay}"
-					TextColor="{DynamicResource LoginTextColor}" />
-				<Label Text="Description" />
+					Visual="Material" />
 				<Entry
 					x:Name="EntryDescription"
-					BackgroundColor="Transparent"
-					FontSize="15"
-					HeightRequest="40"
 					HorizontalOptions="FillAndExpand"
 					Placeholder="Description"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding Outlet.Description, Mode=TwoWay}"
-					TextColor="{DynamicResource LoginTextColor}" />
-				<Label Text="Location *" />
+					Visual="Material" />
 				<Entry
 					x:Name="EntryLocation"
-					BackgroundColor="Transparent"
-					FontSize="15"
-					HeightRequest="40"
 					HorizontalOptions="FillAndExpand"
-					Placeholder="Description"
+					Placeholder="Location *"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding Outlet.Location, Mode=TwoWay}"
-					TextColor="{DynamicResource LoginTextColor}" />
-				<Label Text="Contact Person" />
+					Visual="Material" />
 				<Entry
 					x:Name="EntryContactName"
-					BackgroundColor="Transparent"
-					FontSize="15"
-					HeightRequest="40"
 					HorizontalOptions="FillAndExpand"
-					Placeholder="Description"
+					Placeholder="Contact Name"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding Outlet.ContactName, Mode=TwoWay}"
-					TextColor="{DynamicResource LoginTextColor}" />
-				<Label Text="Contact Person" />
+					Visual="Material" />
 				<Entry
 					x:Name="EntryContactNumber"
-					BackgroundColor="Transparent"
-					FontSize="15"
-					HeightRequest="40"
 					HorizontalOptions="FillAndExpand"
 					Keyboard="Telephone"
 					MaxLength="10"
-					Placeholder="ContactNumber"
+					Placeholder="Contact Number"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding Outlet.ContactNumber, Mode=TwoWay}"
-					TextColor="{DynamicResource LoginTextColor}" />
+					Visual="Material" />
 				<Button
-					BackgroundColor="{DynamicResource LoginButtonColor}"
+					BackgroundColor="{DynamicResource Primary}"
 					Command="{Binding SaveOutletCommand}"
 					CornerRadius="50"
 					HorizontalOptions="FillAndExpand"

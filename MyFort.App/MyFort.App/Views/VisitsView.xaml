@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="MyFort.App.Views.VisitsView"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="Visits"
+	mc:Ignorable="d">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem
+			Name="Create"
+			Command="{Binding AddVisitCommand}"
+			Text="Add" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid Margin="10">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<DatePicker Date="{Binding BusinessDate}" Visual="Material" />
+				<Button
+					Grid.Column="1"
+					BackgroundColor="{DynamicResource Primary}"
+					Command="{Binding GetVisitsCommand}"
+					CornerRadius="50"
+					HorizontalOptions="FillAndExpand"
+					Text="Get Visits"
+					TextColor="{DynamicResource LoginButtonTextColor}"
+					Visual="Material" />
+			</Grid>
+			<ListView
+				Grid.Row="1"
+				HasUnevenRows="True"
+				ItemsSource="{Binding Visits}"
+				VerticalOptions="FillAndExpand">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<Grid Margin="5">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
+
+								<Label FontSize="Title" Text="{Binding Outlet.Name, StringFormat='Visit to: {0}'}" />
+								<Label Grid.Row="1">
+									<Label.FormattedText>
+										<FormattedString>
+											<Span Text="Visted by: " />
+											<Span Text="{Binding User.FirstName}" />
+											<Span Text=" " />
+											<Span Text="{Binding User.LastName}" />
+										</FormattedString>
+									</Label.FormattedText>
+								</Label>
+								<Label Grid.Row="2" Text="{Binding VisitedOn, StringFormat='Visited On: {0:dd/MM/yyyy}'}" />
+								<Label Grid.Row="3" Text="{Binding Notes, StringFormat='Note: {0}'}" />
+								<Label Grid.Row="4" Text="{Binding MeetingWith}" />
+							</Grid>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+
+			</ListView>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

@@ -10,6 +10,16 @@
 	NavigationPage.HasNavigationBar="True"
 	mc:Ignorable="d">
 	<ContentPage.Content>
-		<Label Text="This is home page" />
+		<Grid VerticalOptions="CenterAndExpand">
+			<Button
+				Margin="10"
+				BackgroundColor="{DynamicResource Primary}"
+				Command="{Binding AddVisitCommand}"
+				CornerRadius="50"
+				HorizontalOptions="FillAndExpand"
+				Text="Add New Visit"
+				TextColor="{DynamicResource LoginButtonTextColor}"
+				Visual="Material" />
+		</Grid>
 	</ContentPage.Content>
 </ContentPage>

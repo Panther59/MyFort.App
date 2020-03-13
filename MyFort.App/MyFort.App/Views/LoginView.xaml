@@ -116,7 +116,7 @@
 							</ctrl:IconFrame>
 						</Grid>
 						<Button
-							BackgroundColor="{DynamicResource LoginButtonColor}"
+							BackgroundColor="{DynamicResource Primary}"
 							Command="{Binding LoginCommand}"
 							CornerRadius="50"
 							HorizontalOptions="FillAndExpand"
@@ -149,7 +149,7 @@
 					<ActivityIndicator
 						IsRunning="True"
 						IsVisible="{Binding IsBusy}"
-						Color="Green" />
+						Color="{DynamicResource Primary}" />
 				</StackLayout>
 
 			</Grid>

@@ -8,6 +8,7 @@ namespace MyFort.App.ViewModels
 {
 	using MyFort.App.Navigation;
 	using MyFort.App.Services;
+	using System;
 	using System.Threading.Tasks;
 	using System.Windows.Input;
 	using Xamarin.Forms;
@@ -23,6 +24,11 @@ namespace MyFort.App.ViewModels
 		private readonly IAppSettings appSettings;
 
 		/// <summary>
+		/// Defines the dialogService
+		/// </summary>
+		private readonly IDialogService dialogService;
+
+		/// <summary>
 		/// Defines the navigationService
 		/// </summary>
 		private readonly INavigationService navigationService;
@@ -31,6 +37,11 @@ namespace MyFort.App.ViewModels
 		/// Defines the viewLocator
 		/// </summary>
 		private readonly IViewLocator viewLocator;
+
+		/// <summary>
+		/// Defines the myVisitsCommand
+		/// </summary>
+		public ICommand myVisitsCommand;
 
 		/// <summary>
 		/// Defines the outletsCommand
@@ -43,6 +54,11 @@ namespace MyFort.App.ViewModels
 		public ICommand usersCommand;
 
 		/// <summary>
+		/// Defines the visitsCommand
+		/// </summary>
+		public ICommand visitsCommand;
+
+		/// <summary>
 		/// Defines the userName
 		/// </summary>
 		private string userName;
@@ -50,15 +66,18 @@ namespace MyFort.App.ViewModels
 		/// <summary>
 		/// Initializes a new instance of the <see cref="MasterViewModel"/> class.
 		/// </summary>
+		/// <param name="dialogService">The dialogService<see cref="IDialogService"/></param>
 		/// <param name="appSettings">The appSettings<see cref="IAppSettings"/></param>
 		/// <param name="viewLocator">The viewLocator<see cref="IViewLocator"/></param>
 		/// <param name="navigationService">The navigationService<see cref="INavigationService"/></param>
 		public MasterViewModel(
+			IDialogService dialogService,
 			IAppSettings appSettings,
 			IViewLocator viewLocator,
 			INavigationService navigationService)
 		{
 			this.LogoutCommand = new Command(() => this.Logout());
+			this.dialogService = dialogService;
 			this.appSettings = appSettings;
 			this.viewLocator = viewLocator;
 			this.navigationService = navigationService;
@@ -68,6 +87,22 @@ namespace MyFort.App.ViewModels
 		/// Gets the LogoutCommand
 		/// </summary>
 		public ICommand LogoutCommand { get; }
+
+		/// <summary>
+		/// Gets the MyVisitsCommand
+		/// </summary>
+		public ICommand MyVisitsCommand
+		{
+			get
+			{
+				if (this.myVisitsCommand == null)
+				{
+					this.myVisitsCommand = new Command(() => this.MyVisits());
+				}
+
+				return this.myVisitsCommand;
+			}
+		}
 
 		/// <summary>
 		/// Gets the OutletsCommand
@@ -114,6 +149,22 @@ namespace MyFort.App.ViewModels
 		}
 
 		/// <summary>
+		/// Gets the VisitsCommand
+		/// </summary>
+		public ICommand VisitsCommand
+		{
+			get
+			{
+				if (this.visitsCommand == null)
+				{
+					this.visitsCommand = new Command(() => this.Visits());
+				}
+
+				return this.visitsCommand;
+			}
+		}
+
+		/// <summary>
 		/// The BeforeFirstShown
 		/// </summary>
 		/// <returns>The <see cref="Task"/></returns>
@@ -137,6 +188,23 @@ namespace MyFort.App.ViewModels
 		}
 
 		/// <summary>
+		/// The MyVisits
+		/// </summary>
+		private void MyVisits()
+		{
+			try
+			{
+				var vm = this.viewLocator.GetViewModel<VisitsViewModel>();
+				vm.IsPersonalView = true;
+				this.navigationService.NavigateTo(vm);
+			}
+			catch (Exception ex)
+			{
+				this.dialogService.ShowAlertAsync(ex.Message, "My Fort", "OK");
+			}
+		}
+
+		/// <summary>
 		/// The Outlets
 		/// </summary>
 		private void Outlets()
@@ -146,9 +214,9 @@ namespace MyFort.App.ViewModels
 				var vm = this.viewLocator.GetViewModel<OutletsViewModel>();
 				this.navigationService.NavigateTo(vm);
 			}
-			catch (System.Exception)
+			catch (Exception ex)
 			{
-
+				this.dialogService.ShowAlertAsync(ex.Message, "My Fort", "OK");
 			}
 		}
 
@@ -162,9 +230,26 @@ namespace MyFort.App.ViewModels
 				var vm = this.viewLocator.GetViewModel<UsersViewModel>();
 				this.navigationService.NavigateTo(vm);
 			}
-			catch (System.Exception)
+			catch (Exception ex)
 			{
+				this.dialogService.ShowAlertAsync(ex.Message, "My Fort", "OK");
+			}
+		}
 
+		/// <summary>
+		/// The Visits
+		/// </summary>
+		private void Visits()
+		{
+			try
+			{
+				var vm = this.viewLocator.GetViewModel<VisitsViewModel>();
+				vm.IsPersonalView = false;
+				this.navigationService.NavigateTo(vm);
+			}
+			catch (Exception ex)
+			{
+				this.dialogService.ShowAlertAsync(ex.Message, "My Fort", "OK");
 			}
 		}
 	}

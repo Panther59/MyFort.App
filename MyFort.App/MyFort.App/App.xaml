@@ -32,7 +32,7 @@
 
 			<Color x:Key="LoginTextColor">Black</Color>
 			<Color x:Key="LoginHintColor">Gray</Color>
-			<Color x:Key="LoginButtonColor">#E1501A</Color>
+			<Color x:Key="LoginButtonColor">#448FF5</Color>
 			<Color x:Key="LoginButtonTextColor">White</Color>
 
 		</ResourceDictionary>

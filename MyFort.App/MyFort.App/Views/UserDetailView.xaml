@@ -14,64 +14,62 @@
 		<Grid VerticalOptions="StartAndExpand">
 			<StackLayout Margin="10,0" VerticalOptions="StartAndExpand">
 
-				<Label Text="First Name" />
 				<Entry
 					x:Name="EntryFirstName"
 					Grid.Column="1"
-					BackgroundColor="Transparent"
-					FontSize="15"
-					HeightRequest="40"
 					HorizontalOptions="FillAndExpand"
 					Placeholder="First Name"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding User.FirstName, Mode=TwoWay}"
-					TextColor="{DynamicResource LoginTextColor}" />
-				<Label Text="Last Name" />
+					Visual="Material" />
 				<Entry
 					x:Name="EntryLastName"
-					BackgroundColor="Transparent"
-					FontSize="15"
-					HeightRequest="40"
 					HorizontalOptions="FillAndExpand"
-					Placeholder="Password"
+					Placeholder="Last Name"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding User.LastName, Mode=TwoWay}"
-					TextColor="{DynamicResource LoginTextColor}" />
-				<Label Text="Email" />
+					Visual="Material" />
 				<Entry
 					x:Name="EntryEmail"
 					Grid.Column="1"
-					BackgroundColor="Transparent"
-					FontSize="15"
-					HeightRequest="40"
 					HorizontalOptions="FillAndExpand"
 					Keyboard="Email"
 					Placeholder="Email"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding User.Email, Mode=TwoWay}"
-					TextColor="{DynamicResource LoginTextColor}" />
+					Visual="Material" />
 
-				<Label Text="Type" />
-				<ctrl:EnumBindablePicker x:TypeArguments="enum:TypeOfUser" SelectedItem="{Binding User.Type, Mode=TwoWay}" />
+				<ctrl:EnumBindablePicker
+					Title="Type"
+					x:TypeArguments="enum:TypeOfUser"
+					SelectedItem="{Binding User.Type, Mode=TwoWay}"
+					Visual="Material" />
 				<Grid Padding="0">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition Width="Auto" />
 					</Grid.ColumnDefinitions>
 					<Label Text="Is Active" />
-					<Switch Grid.Column="1" IsToggled="{Binding User.IsActive, Mode=TwoWay}" />
+					<Switch
+						Grid.Column="1"
+						IsToggled="{Binding User.IsActive, Mode=TwoWay}"
+						Visual="Material" />
 				</Grid>
 				<Button
-					BackgroundColor="{DynamicResource LoginButtonColor}"
+					BackgroundColor="{DynamicResource Primary}"
 					Command="{Binding SaveUserCommand}"
 					CornerRadius="50"
 					HorizontalOptions="FillAndExpand"
 					Text="Save"
-					TextColor="{DynamicResource LoginButtonTextColor}" />
+					TextColor="{DynamicResource LoginButtonTextColor}"
+					Visual="Material" />
 
 			</StackLayout>
 			<StackLayout IsVisible="{Binding IsBusy}" VerticalOptions="CenterAndExpand">
-				<ActivityIndicator HorizontalOptions="Center" IsRunning="True" />
+				<ActivityIndicator
+					HorizontalOptions="Center"
+					IsRunning="True"
+					Visual="Material" />
 				<Label HorizontalOptions="CenterAndExpand" Text="Saving user" />
 			</StackLayout>
 		</Grid>

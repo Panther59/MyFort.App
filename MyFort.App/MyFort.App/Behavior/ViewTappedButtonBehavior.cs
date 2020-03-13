@@ -94,7 +94,7 @@ namespace MyFort.App.Behavior
                     {
                         await view.FadeTo(0.3, 300);
                         var temp = view.BackgroundColor;
-                        view.BackgroundColor = Color.Orange;
+                        view.BackgroundColor = Color.LightBlue;
                         await view.FadeTo(1, 300);
                         view.BackgroundColor = temp;
                     }

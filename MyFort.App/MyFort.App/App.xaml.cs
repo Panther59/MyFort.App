@@ -39,6 +39,7 @@ namespace MyFort.App
 			Container.RegisterType<IServerCommunication, ServerCommunication>();
 			Container.RegisterType<IAppSettings, AppSettings>();
 			Container.RegisterType<ILogger, Logger>();
+			Container.RegisterType<IVisitsService, VisitsService>();
 			Container.RegisterType<IOutletService, OutletService>();
 			Container.RegisterType<IAuthService, AuthService>();
 			Container.RegisterType<IUsersService, UsersService>();

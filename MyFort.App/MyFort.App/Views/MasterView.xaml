@@ -57,6 +57,20 @@
 				<ContentView BackgroundColor="{DynamicResource DrawerMenuItemSeparatorColor}" HeightRequest="1" />
 
 				<ctrl:NavigationItem
+					Command="{Binding VisitsCommand}"
+					CommandParameter="2"
+					Icon="md-business"
+					Text="Visits"
+					TextColor="{DynamicResource DrawerMenuItemTextColor}" />
+
+				<ctrl:NavigationItem
+					Command="{Binding MyVisitsCommand}"
+					CommandParameter="2"
+					Icon="md-work"
+					Text="My Visits"
+					TextColor="{DynamicResource DrawerMenuItemTextColor}" />
+				<ContentView BackgroundColor="{DynamicResource DrawerMenuItemSeparatorColor}" HeightRequest="1" />
+				<ctrl:NavigationItem
 					Command="{Binding LogoutCommand}"
 					CommandParameter="2"
 					Icon="md-exit-to-app"

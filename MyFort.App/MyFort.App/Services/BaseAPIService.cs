@@ -20,8 +20,8 @@ namespace MyFort.App.Services
 
 		public string BaseUrl
 		{
-			get => "https://UtkarshLaptop:7001/api/";
-			//get => "https://myfortapi.azurewebsites.net/api/";
+			//get => "https://UtkarshLaptop:7001/api/";
+			get => "https://myfortapi.azurewebsites.net/api/";
 		}
 
 		public async Task<APIResponse<T>> GetAsync<T>(string url)

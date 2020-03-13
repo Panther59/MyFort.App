@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="MyFort.App.Views.VisitDetailView"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="New Visit"
+	mc:Ignorable="d">
+	<ContentPage.Content>
+		<Grid VerticalOptions="StartAndExpand">
+			<StackLayout Margin="10,0" VerticalOptions="StartAndExpand">
+
+				<Picker
+					Title="Outlet"
+					Margin="3"
+					ItemDisplayBinding="{Binding Name}"
+					ItemsSource="{Binding Outlets}"
+					SelectedItem="{Binding SelectedOutlet, Mode=TwoWay}"
+					TextColor="{DynamicResource LoginTextColor}"
+					TitleColor="{DynamicResource LoginHintColor}"
+					Visual="Material">
+					<Picker.Behaviors>
+						<behaviors:EventHandlerBehavior EventName="SelectedIndexChanged">
+							<behaviors:InvokeCommandAction Command="{Binding OutletSelectionChangedCommand}" />
+						</behaviors:EventHandlerBehavior>
+					</Picker.Behaviors>
+				</Picker>
+				<Entry
+					x:Name="EntryMeetingWith"
+					Margin="3"
+					HorizontalOptions="FillAndExpand"
+					Placeholder="Meeting With"
+					PlaceholderColor="{DynamicResource LoginHintColor}"
+					Text="{Binding MeetingWith, Mode=TwoWay}"
+					Visual="Material" />
+				<Editor
+					x:Name="EntryNote"
+					Margin="3"
+					FontSize="15"
+					HeightRequest="160"
+					HorizontalOptions="FillAndExpand"
+					Placeholder="Meeting Note"
+					PlaceholderColor="{DynamicResource LoginHintColor}"
+					Text="{Binding Note, Mode=TwoWay}"
+					Visual="Material" />
+
+				<Button
+					BackgroundColor="{DynamicResource Primary}"
+					Command="{Binding SaveVisitCommand}"
+					CornerRadius="50"
+					HorizontalOptions="FillAndExpand"
+					Text="Save"
+					TextColor="{DynamicResource LoginButtonTextColor}"
+					Visual="Material" />
+
+			</StackLayout>
+			<StackLayout IsVisible="{Binding IsBusy}" VerticalOptions="CenterAndExpand">
+				<ActivityIndicator HorizontalOptions="Center" IsRunning="True" />
+				<Label HorizontalOptions="CenterAndExpand" Text="Saving Outlet" />
+			</StackLayout>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

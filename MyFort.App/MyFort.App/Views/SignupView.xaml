@@ -21,7 +21,7 @@
 					IsVisible="{Binding IsGoogleSignedIn, Converter={conv:InverseBoolConverter}}"
 					VerticalOptions="Center">
 					<Button
-						BackgroundColor="{DynamicResource LoginButtonColor}"
+						BackgroundColor="{DynamicResource Primary}"
 						Command="{Binding SignupWithGoogleCommand}"
 						CornerRadius="50"
 						HorizontalOptions="FillAndExpand"
@@ -190,7 +190,7 @@
 							</ctrl:IconFrame>
 						</Grid>
 						<Button
-							BackgroundColor="{DynamicResource LoginButtonColor}"
+							BackgroundColor="{DynamicResource Primary}"
 							Command="{Binding CreateAccountCommand}"
 							CornerRadius="50"
 							Text="Create Account"
