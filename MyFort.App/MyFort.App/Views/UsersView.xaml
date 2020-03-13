@@ -3,6 +3,7 @@
 	x:Class="MyFort.App.Views.UsersView"
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:conv="clr-namespace:MyFort.App.Extensions"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:views="clr-namespace:MyFort.App.Views"
@@ -37,6 +38,14 @@
 							</Grid>
 							<Label Grid.Row="1" Text="{Binding Email}" />
 							<Label Grid.Row="2" Text="{Binding Type}" />
+							<Label
+								Grid.Row="3"
+								IsVisible="{Binding IsActive}"
+								Text="Active" />
+							<Label
+								Grid.Row="3"
+								IsVisible="{Binding IsActive, Converter={conv:InverseBoolConverter}}"
+								Text="In Active" />
 							<Button
 								Grid.Row="4"
 								Command="{Binding BindingContext.ModifyUserCommand, Source={x:Reference Name=UserPage}}"

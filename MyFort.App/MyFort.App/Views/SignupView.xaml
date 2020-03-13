@@ -16,7 +16,10 @@
 				<Grid.RowDefinitions>
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
-				<StackLayout IsVisible="{Binding IsGoogleSignedIn, Converter={conv:InverseBoolConverter}}" VerticalOptions="Center">
+				<StackLayout
+					Margin="10,0"
+					IsVisible="{Binding IsGoogleSignedIn, Converter={conv:InverseBoolConverter}}"
+					VerticalOptions="Center">
 					<Button
 						BackgroundColor="{DynamicResource LoginButtonColor}"
 						Command="{Binding SignupWithGoogleCommand}"

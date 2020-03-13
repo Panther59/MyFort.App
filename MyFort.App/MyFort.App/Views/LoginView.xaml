@@ -35,6 +35,11 @@
 							Source="my_fort.png"
 							VerticalOptions="Start"
 							WidthRequest="200" />
+						<Label
+							FontSize="Title"
+							HorizontalOptions="Center"
+							Text="My Fort"
+							TextColor="White" />
 						<Grid Padding="0,0,0,0">
 							<ctrl:IconFrame
 								Padding="10,5,5,5"
@@ -123,15 +128,20 @@
 						Grid.Row="2"
 						HorizontalOptions="CenterAndExpand"
 						VerticalOptions="EndAndExpand">
-						<Label
+						<Button
 							Margin="30"
+							BackgroundColor="rgba(255, 255, 255, 0.38)"
+							Command="{Binding RegisterCommand}"
+							FontSize="Medium"
+							Text="Click here to Sign up" />
+						<!--<Label
 							FontSize="Medium"
 							Text="Click here to Sign up"
 							TextColor="White">
 							<Label.GestureRecognizers>
 								<TapGestureRecognizer Command="{Binding RegisterCommand}" />
 							</Label.GestureRecognizers>
-						</Label>
+						</Label>-->
 					</Grid>
 				</Grid>
 

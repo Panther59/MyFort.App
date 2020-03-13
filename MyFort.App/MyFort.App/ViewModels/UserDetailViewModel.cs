@@ -45,6 +45,11 @@ namespace MyFort.App.ViewModels
 		private User user;
 
 		/// <summary>
+		/// Defines the userViewModel
+		/// </summary>
+		private UsersViewModel userViewModel;
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="UserDetailViewModel"/> class.
 		/// </summary>
 		/// <param name="dialogService">The dialogService<see cref="IDialogService"/></param>
@@ -69,7 +74,7 @@ namespace MyFort.App.ViewModels
 			{
 				if (this.saveUserCommand == null)
 				{
-					this.saveUserCommand = new Command(() => this.SaveUser());
+					this.saveUserCommand = new Command(async () => await this.SaveUser());
 				}
 
 				return this.saveUserCommand;
@@ -89,20 +94,21 @@ namespace MyFort.App.ViewModels
 		}
 
 		/// <summary>
-		/// The BeforeFirstShown
+		/// The Initialize
 		/// </summary>
-		/// <returns>The <see cref="Task"/></returns>
-		public override Task BeforeFirstShown()
+		/// <param name="user">The user<see cref="User"/></param>
+		/// <param name="vm">The vm<see cref="UsersViewModel"/></param>
+		public void Initialize(User user, UsersViewModel vm)
 		{
-			return Task.Run(() =>
-			{
-				this.Title = this.User.FirstName + " " + this.User.LastName;
-			});
+			this.User = user;
+			this.userViewModel = vm;
+			this.Title = this.User.FirstName + " " + this.User.LastName;
 		}
 
 		/// <summary>
 		/// The SaveUser
 		/// </summary>
+		/// <returns>The <see cref="Task"/></returns>
 		private async Task SaveUser()
 		{
 			try
@@ -112,6 +118,7 @@ namespace MyFort.App.ViewModels
 				if (response.IsSuccess)
 				{
 					this.IsBusy = false;
+					await this.userViewModel.BeforeFirstShown();
 					await this.navigationService.NavigateBack();
 				}
 				else

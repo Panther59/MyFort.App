@@ -116,7 +116,7 @@ namespace MyFort.App.ViewModels
 		private void ModifyUser(User user)
 		{
 			var vm = this.viewLocator.GetViewModel<UserDetailViewModel>();
-			vm.User = user;
+			vm.Initialize(user, this);
 			this.navigationService.NavigateTo(vm);
 		}
 	}
