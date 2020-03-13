@@ -16,7 +16,8 @@ namespace MyFort.App.Droid.Renderers
 	using Android.Content.Res;
 	using Android.Graphics.Drawables;
 	using Android.Text;
-	using Xamarin.Forms;
+    using Android.Widget;
+    using Xamarin.Forms;
 	using Xamarin.Forms.Platform.Android;
 
 	/// <summary>
@@ -48,16 +49,10 @@ namespace MyFort.App.Droid.Renderers
 
 			if (this.Control != null)
 			{
-				//var nativeEditText = (global::Android.Widget.EditText)Control;
-				//var shape = new ShapeDrawable(new Android.Graphics.Drawables.Shapes.RectShape());
-				//shape.Paint.Color = Xamarin.Forms.Color.Red.ToAndroid();
-				//shape.Paint.SetStyle(Paint.Style.Stroke);
-				//nativeEditText.Background = shape;
-
+				
 				GradientDrawable gd = new GradientDrawable();
 				gd.SetColor(global::Android.Graphics.Color.Transparent);
 				this.Control.SetBackgroundDrawable(gd);
-				this.Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
 				gd.SetStroke(1, global::Android.Graphics.Color.Transparent);
 				Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Gray));
 
@@ -66,7 +61,6 @@ namespace MyFort.App.Droid.Renderers
 					GradientDrawable gd = new GradientDrawable();
 					gd.SetColor(global::Android.Graphics.Color.Transparent);
 					this.Control.SetBackgroundDrawable(gd);
-					this.Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
 					Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Gray));
 					gd.SetStroke(1, global::Android.Graphics.Color.Transparent);
 				};
@@ -75,7 +69,6 @@ namespace MyFort.App.Droid.Renderers
 					GradientDrawable gd = new GradientDrawable();
 					gd.SetColor(global::Android.Graphics.Color.Transparent);
 					this.Control.SetBackgroundDrawable(gd);
-					this.Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
 					gd.SetStroke(1, global::Android.Graphics.Color.Orange);
 					Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Orange));
 				};

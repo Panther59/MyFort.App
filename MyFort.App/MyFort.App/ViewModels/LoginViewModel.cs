@@ -143,6 +143,18 @@ namespace MyFort.App.ViewModels
 		{
 			try
 			{
+				if (string.IsNullOrEmpty(this.Email))
+				{
+					await this.dialogService.ShowAlertAsync("Please enter email address", "Login", "OK");
+					return;
+				}
+
+				if (string.IsNullOrEmpty(this.Password))
+				{
+					await this.dialogService.ShowAlertAsync("Please enter password", "Login", "OK");
+					return;
+				}
+
 				this.IsBusy = true;
 				var response = await this.authService.Authenticate(new Models.AuthRequest { Email = this.Email, Password = this.Password });
 				this.IsBusy = false;

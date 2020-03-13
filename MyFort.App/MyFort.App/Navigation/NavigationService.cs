@@ -136,6 +136,9 @@ namespace MyFort.App.Navigation
 		{
 			var dismissing = Navigator.NavigationStack.Last().BindingContext as BaseViewModel;
 
+			var goingPageVM = Navigator.NavigationStack.ElementAt(Navigator.NavigationStack.Count - 2)?.BindingContext as BaseViewModel;
+			goingPageVM?.BeforeNavigatedBack();
+
 			await Navigator.PopAsync();
 
 			dismissing?.AfterDismissed();
@@ -170,7 +173,7 @@ namespace MyFort.App.Navigation
 			var detailPage = _viewLocator.CreateAndBindPageFor(detailViewModel);
 			NavigationPage newNavigationPage = new NavigationPage(detailPage);
 			page.Detail = newNavigationPage;
-			
+
 			var masterViewModel = _viewLocator.GetViewModel<TMasterViewModel>();
 			page.Master.BindingContext = masterViewModel;
 

@@ -45,11 +45,6 @@ namespace MyFort.App.ViewModels
 		private User user;
 
 		/// <summary>
-		/// Defines the userViewModel
-		/// </summary>
-		private UsersViewModel userViewModel;
-
-		/// <summary>
 		/// Initializes a new instance of the <see cref="UserDetailViewModel"/> class.
 		/// </summary>
 		/// <param name="dialogService">The dialogService<see cref="IDialogService"/></param>
@@ -97,11 +92,9 @@ namespace MyFort.App.ViewModels
 		/// The Initialize
 		/// </summary>
 		/// <param name="user">The user<see cref="User"/></param>
-		/// <param name="vm">The vm<see cref="UsersViewModel"/></param>
-		public void Initialize(User user, UsersViewModel vm)
+		public void Initialize(User user)
 		{
 			this.User = user;
-			this.userViewModel = vm;
 			this.Title = this.User.FirstName + " " + this.User.LastName;
 		}
 
@@ -118,7 +111,6 @@ namespace MyFort.App.ViewModels
 				if (response.IsSuccess)
 				{
 					this.IsBusy = false;
-					await this.userViewModel.BeforeFirstShown();
 					await this.navigationService.NavigateBack();
 				}
 				else

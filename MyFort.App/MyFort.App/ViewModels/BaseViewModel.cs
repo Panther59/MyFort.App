@@ -77,6 +77,15 @@ namespace MyFort.App.ViewModels
 		}
 
 		/// <summary>
+		/// The BeforeNavigatedBack
+		/// </summary>
+		/// <returns>The <see cref="Task"/></returns>
+		public virtual Task BeforeNavigatedBack()
+		{
+			return Task.CompletedTask;
+		}
+
+		/// <summary>
 		/// The OnPropertyChanged
 		/// </summary>
 		/// <param name="propertyName">The propertyName<see cref="string"/></param>

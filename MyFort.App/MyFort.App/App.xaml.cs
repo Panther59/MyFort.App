@@ -39,6 +39,7 @@ namespace MyFort.App
 			Container.RegisterType<IServerCommunication, ServerCommunication>();
 			Container.RegisterType<IAppSettings, AppSettings>();
 			Container.RegisterType<ILogger, Logger>();
+			Container.RegisterType<IOutletService, OutletService>();
 			Container.RegisterType<IAuthService, AuthService>();
 			Container.RegisterType<IUsersService, UsersService>();
 			Container.RegisterType<IDialogService, DialogService>();
@@ -48,6 +49,10 @@ namespace MyFort.App
 			Container.RegisterType<LoginViewModel>();
 			Container.RegisterType<HomeViewModel>();
 			Container.RegisterType<MasterViewModel>();
+			Container.RegisterType<UsersViewModel>();
+			Container.RegisterType<UserDetailViewModel>();
+			Container.RegisterType<OutletsViewModel>();
+			Container.RegisterType<OutletDetailViewModel>();
 		}
 
 		protected override void OnStart()

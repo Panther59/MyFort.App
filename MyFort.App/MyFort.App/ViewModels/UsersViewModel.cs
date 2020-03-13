@@ -34,6 +34,7 @@ namespace MyFort.App.ViewModels
 		/// Defines the viewLocator
 		/// </summary>
 		private readonly IViewLocator viewLocator;
+		private readonly IDialogService dialogService;
 
 		/// <summary>
 		/// Defines the modifyUserCommand
@@ -54,10 +55,12 @@ namespace MyFort.App.ViewModels
 		public UsersViewModel(
 			IUsersService usersService,
 			IViewLocator viewLocator,
+			IDialogService dialogService,
 			INavigationService navigationService)
 		{
 			this.usersService = usersService;
 			this.viewLocator = viewLocator;
+			this.dialogService = dialogService;
 			this.navigationService = navigationService;
 		}
 
@@ -95,6 +98,11 @@ namespace MyFort.App.ViewModels
 		/// <returns>The <see cref="Task"/></returns>
 		public async override Task BeforeFirstShown()
 		{
+			await this.Initialize();	
+		}
+
+		public async Task Initialize()
+		{
 			try
 			{
 				var response = await this.usersService.GetAllUsers();
@@ -102,10 +110,14 @@ namespace MyFort.App.ViewModels
 				{
 					this.Users = new ObservableCollection<User>(response.Result);
 				}
+				else
+				{
+					await this.dialogService.ShowAlertAsync(response.Error?.Error ?? "Error loading users", "Users Load", "OK");
+				}
 			}
 			catch (Exception ex)
 			{
-
+				await this.dialogService.ShowAlertAsync(ex.Message, "Users Load", "OK");
 			}
 		}
 
@@ -116,8 +128,13 @@ namespace MyFort.App.ViewModels
 		private void ModifyUser(User user)
 		{
 			var vm = this.viewLocator.GetViewModel<UserDetailViewModel>();
-			vm.Initialize(user, this);
+			vm.Initialize(user);
 			this.navigationService.NavigateTo(vm);
+		}
+
+		public async override Task BeforeNavigatedBack()
+		{
+			await this.Initialize();	
 		}
 	}
 }

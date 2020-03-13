@@ -33,6 +33,16 @@ namespace MyFort.App.ViewModels
 		private readonly IViewLocator viewLocator;
 
 		/// <summary>
+		/// Defines the outletsCommand
+		/// </summary>
+		public ICommand outletsCommand;
+
+		/// <summary>
+		/// Defines the usersCommand
+		/// </summary>
+		public ICommand usersCommand;
+
+		/// <summary>
 		/// Defines the userName
 		/// </summary>
 		private string userName;
@@ -60,6 +70,22 @@ namespace MyFort.App.ViewModels
 		public ICommand LogoutCommand { get; }
 
 		/// <summary>
+		/// Gets the OutletsCommand
+		/// </summary>
+		public ICommand OutletsCommand
+		{
+			get
+			{
+				if (this.outletsCommand == null)
+				{
+					this.outletsCommand = new Command(() => this.Outlets());
+				}
+
+				return this.outletsCommand;
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets the UserName
 		/// </summary>
 		public string UserName
@@ -71,8 +97,9 @@ namespace MyFort.App.ViewModels
 			}
 		}
 
-
-		public ICommand usersCommand;
+		/// <summary>
+		/// Gets the UsersCommand
+		/// </summary>
 		public ICommand UsersCommand
 		{
 			get
@@ -86,17 +113,16 @@ namespace MyFort.App.ViewModels
 			}
 		}
 
-		private void Users()
+		/// <summary>
+		/// The BeforeFirstShown
+		/// </summary>
+		/// <returns>The <see cref="Task"/></returns>
+		public async override Task BeforeFirstShown()
 		{
-			try
+			await Task.Run(() =>
 			{
-				var vm = this.viewLocator.GetViewModel<UsersViewModel>();
-				this.navigationService.NavigateTo(vm);
-			}
-			catch (System.Exception)
-			{
-
-			}
+				this.UserName = this.appSettings.Get("Name");
+			});
 		}
 
 		/// <summary>
@@ -110,12 +136,36 @@ namespace MyFort.App.ViewModels
 			this.navigationService.PresentAsNavigatableMainPage<LoginViewModel>(ref viewModel);
 		}
 
-		public async override Task BeforeFirstShown()
+		/// <summary>
+		/// The Outlets
+		/// </summary>
+		private void Outlets()
 		{
-			await Task.Run(() =>
+			try
 			{
-				this.UserName = this.appSettings.Get("Name");
-			});
+				var vm = this.viewLocator.GetViewModel<OutletsViewModel>();
+				this.navigationService.NavigateTo(vm);
+			}
+			catch (System.Exception)
+			{
+
+			}
+		}
+
+		/// <summary>
+		/// The Users
+		/// </summary>
+		private void Users()
+		{
+			try
+			{
+				var vm = this.viewLocator.GetViewModel<UsersViewModel>();
+				this.navigationService.NavigateTo(vm);
+			}
+			catch (System.Exception)
+			{
+
+			}
 		}
 	}
 }

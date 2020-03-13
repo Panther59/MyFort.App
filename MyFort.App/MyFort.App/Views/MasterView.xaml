@@ -48,7 +48,14 @@
 					Icon="md-supervisor-account"
 					Text="Users"
 					TextColor="{DynamicResource DrawerMenuItemTextColor}" />
+				<ctrl:NavigationItem
+					Command="{Binding OutletsCommand}"
+					CommandParameter="2"
+					Icon="md-store"
+					Text="Outlets"
+					TextColor="{DynamicResource DrawerMenuItemTextColor}" />
 				<ContentView BackgroundColor="{DynamicResource DrawerMenuItemSeparatorColor}" HeightRequest="1" />
+
 				<ctrl:NavigationItem
 					Command="{Binding LogoutCommand}"
 					CommandParameter="2"
