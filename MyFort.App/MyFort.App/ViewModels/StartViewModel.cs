@@ -11,12 +11,12 @@ namespace MyFort.App.ViewModels
 	using Plugin.GoogleClient;
 	using System;
 	using System.Threading.Tasks;
-    using Xamarin.Forms;
+	using Xamarin.Forms;
 
-    /// <summary>
-    /// Defines the <see cref="MainViewModel" />
-    /// </summary>
-    public class MainViewModel : BaseViewModel
+	/// <summary>
+	/// Defines the <see cref="StartViewModel" />
+	/// </summary>
+	public class StartViewModel : BaseViewModel
 	{
 		/// <summary>
 		/// Defines the appSettings
@@ -44,14 +44,14 @@ namespace MyFort.App.ViewModels
 		private readonly IViewLocator viewLocator;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="MainViewModel"/> class.
+		/// Initializes a new instance of the <see cref="StartViewModel"/> class.
 		/// </summary>
 		/// <param name="navigationService">The navigationService<see cref="INavigationService"/></param>
 		/// <param name="authService">The authService<see cref="IAuthService"/></param>
 		/// <param name="appSettings">The appSettings<see cref="IAppSettings"/></param>
 		/// <param name="viewLocator">The viewLocator<see cref="IViewLocator"/></param>
 		/// <param name="logger">The logger<see cref="ILogger"/></param>
-		public MainViewModel(
+		public StartViewModel(
 			INavigationService navigationService,
 			IAuthService authService,
 			IAppSettings appSettings,
@@ -73,14 +73,21 @@ namespace MyFort.App.ViewModels
 		{
 			try
 			{
-				var theme = this.appSettings.Get("Theme");
-				if (theme != null && theme == "Dark")
+				if (!this.appSettings.HasKey("Theme"))
 				{
-					MessagingCenter.Send<object, Theme>(this, "ModeChanged", Theme.Dark);
+					MessagingCenter.Send<object, Theme>(this, "ModeChanged", App.PhoneTheme);
 				}
 				else
 				{
-					MessagingCenter.Send<object, Theme>(this, "ModeChanged", Theme.Light);
+					var theme = this.appSettings.Get("Theme");
+					if (theme != null && theme == "Dark")
+					{
+						MessagingCenter.Send<object, Theme>(this, "ModeChanged", Theme.Dark);
+					}
+					else
+					{
+						MessagingCenter.Send<object, Theme>(this, "ModeChanged", Theme.Light);
+					}
 				}
 
 				var token = this.appSettings.Get("Token");

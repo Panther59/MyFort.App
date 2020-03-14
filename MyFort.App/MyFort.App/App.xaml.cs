@@ -7,6 +7,7 @@ using MyFort.App.ViewModels;
 using Unity;
 using CommonServiceLocator;
 using MyFort.App.Navigation;
+using System.Threading.Tasks;
 
 namespace MyFort.App
 {
@@ -18,12 +19,14 @@ namespace MyFort.App
 
 	public partial class App : Application, IMainPage
 	{
-		
+		public static bool IsAppLoaded = false;
 		public static Theme AppTheme { get; set; }
+		public static Theme PhoneTheme { get; set; }
 		public static UnityContainer Container { get; set; }
 
-		public App()
+		public App(Theme theme)
 		{
+			PhoneTheme = theme;
 			InitializeComponent();
 			Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
 						  .With(new Plugin.Iconize.Fonts.FontAwesomeBrandsModule())
@@ -31,11 +34,17 @@ namespace MyFort.App
 						  .With(new Plugin.Iconize.Fonts.MaterialModule());
 			RegisterService();
 
-			MainViewModel viewModel = null;
+			StartViewModel viewModel = null;
 			var navigator = Container.Resolve<INavigationService>();
-			var page = navigator.PresentAsNavigatableMainPage<MainViewModel>(ref viewModel);
+			var page = navigator.PresentAsNavigatableMainPage(ref viewModel);
 			base.MainPage = page;
-			viewModel.Initialize();
+			this.Initialize(viewModel).Wait();
+		}
+
+		private async Task Initialize(StartViewModel viewModel)
+		{
+			await viewModel.Initialize();
+			IsAppLoaded = true;
 		}
 
 		private void RegisterService()

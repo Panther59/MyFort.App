@@ -19,6 +19,13 @@ namespace MyFort.App.Services
 		string Get(string key);
 
 		/// <summary>
+		/// The HasKey
+		/// </summary>
+		/// <param name="key">The key<see cref="string"/></param>
+		/// <returns>The <see cref="bool"/></returns>
+		bool HasKey(string key);
+
+		/// <summary>
 		/// The Set
 		/// </summary>
 		/// <param name="key">The key<see cref="string"/></param>

@@ -19,7 +19,7 @@ using MyFort.App.Styles;
 
 namespace MyFort.App.Droid
 {
-	[Activity(Label = "My Fort", Icon = "@mipmap/my_fort", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(Label = "My Fort", Icon = "@mipmap/my_fort", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -43,9 +43,10 @@ namespace MyFort.App.Droid
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 			global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
 			MessagingCenter.Subscribe<object, Theme>(this, "ModeChanged", callback: OnModeChanged);
-			LoadApplication(new App());
+			var theme = GetPhoneTheme();
+			LoadApplication(new App(theme));
 			Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
-			//SetAppTheme();
+			SetAppTheme();
 		}
 
 		protected override void OnDestroy()
@@ -69,6 +70,7 @@ namespace MyFort.App.Droid
 
 		private void OnModeChanged(object arg1, Theme theme)
 		{
+
 			//if (theme == MyFort.App.Theme.Light)
 			//{
 			//	Delegate.SetLocalNightMode(AppCompatDelegate.ModeNightNo);
@@ -83,10 +85,19 @@ namespace MyFort.App.Droid
 
 		void SetAppTheme()
 		{
+			SetTheme(App.AppTheme);
+		}
+
+		Theme GetPhoneTheme()
+		{
 			if (Resources.Configuration.UiMode.HasFlag(UiMode.NightYes))
-				SetTheme(MyFort.App.Theme.Dark);
+			{
+				return MyFort.App.Theme.Dark;
+			}
 			else
-				SetTheme(MyFort.App.Theme.Light);
+			{
+				return MyFort.App.Theme.Light;
+			}
 		}
 
 		void SetTheme(Theme mode)
