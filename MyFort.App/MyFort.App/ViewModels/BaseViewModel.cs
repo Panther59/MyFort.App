@@ -36,11 +36,6 @@ namespace MyFort.App.ViewModels
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		/// <summary>
-		/// Gets the DataStore
-		/// </summary>
-		public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
-		/// <summary>
 		/// Gets or sets a value indicating whether IsBusy
 		/// </summary>
 		public bool IsBusy

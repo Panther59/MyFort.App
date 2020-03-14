@@ -10,10 +10,17 @@ using MyFort.App.Navigation;
 
 namespace MyFort.App
 {
+	public enum Theme
+	{
+		Light,
+		Dark
+	}
+
 	public partial class App : Application, IMainPage
 	{
+		
+		public static Theme AppTheme { get; set; }
 		public static UnityContainer Container { get; set; }
-		public Page MainRootPage { get => this.MainPage; set => this.MainPage = value; }
 
 		public App()
 		{
@@ -27,7 +34,7 @@ namespace MyFort.App
 			MainViewModel viewModel = null;
 			var navigator = Container.Resolve<INavigationService>();
 			var page = navigator.PresentAsNavigatableMainPage<MainViewModel>(ref viewModel);
-			MainPage = page;
+			base.MainPage = page;
 			viewModel.Initialize();
 		}
 
@@ -35,8 +42,6 @@ namespace MyFort.App
 		{
 			Container = new UnityContainer();
 			Container.RegisterInstance<IMainPage>(this);
-			Container.RegisterType<MockDataStore>();
-			Container.RegisterType<IServerCommunication, ServerCommunication>();
 			Container.RegisterType<IAppSettings, AppSettings>();
 			Container.RegisterType<ILogger, Logger>();
 			Container.RegisterType<IVisitsService, VisitsService>();
@@ -46,7 +51,6 @@ namespace MyFort.App
 			Container.RegisterType<IDialogService, DialogService>();
 			Container.RegisterType<INavigationService, NavigationService>();
 			Container.RegisterType<IViewLocator, ViewLocator>();
-			Container.RegisterType<AboutViewModel>();
 			Container.RegisterType<LoginViewModel>();
 			Container.RegisterType<HomeViewModel>();
 			Container.RegisterType<MasterViewModel>();

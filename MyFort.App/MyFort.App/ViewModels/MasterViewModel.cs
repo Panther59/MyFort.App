@@ -49,6 +49,11 @@ namespace MyFort.App.ViewModels
 		public ICommand outletsCommand;
 
 		/// <summary>
+		/// Defines the themeChangedCommand
+		/// </summary>
+		public ICommand themeChangedCommand;
+
+		/// <summary>
 		/// Defines the usersCommand
 		/// </summary>
 		public ICommand usersCommand;
@@ -57,6 +62,11 @@ namespace MyFort.App.ViewModels
 		/// Defines the visitsCommand
 		/// </summary>
 		public ICommand visitsCommand;
+
+		/// <summary>
+		/// Defines the isDarkTheme
+		/// </summary>
+		private bool isDarkTheme;
 
 		/// <summary>
 		/// Defines the userName
@@ -81,6 +91,18 @@ namespace MyFort.App.ViewModels
 			this.appSettings = appSettings;
 			this.viewLocator = viewLocator;
 			this.navigationService = navigationService;
+		}
+
+		/// <summary>
+		/// Gets or sets a value indicating whether IsDarkTheme
+		/// </summary>
+		public bool IsDarkTheme
+		{
+			get { return this.isDarkTheme; }
+			set
+			{
+				this.SetProperty(ref this.isDarkTheme, value);
+			}
 		}
 
 		/// <summary>
@@ -117,6 +139,22 @@ namespace MyFort.App.ViewModels
 				}
 
 				return this.outletsCommand;
+			}
+		}
+
+		/// <summary>
+		/// Gets the ThemeChangedCommand
+		/// </summary>
+		public ICommand ThemeChangedCommand
+		{
+			get
+			{
+				if (this.themeChangedCommand == null)
+				{
+					this.themeChangedCommand = new Command(() => this.ThemeChanged());
+				}
+
+				return this.themeChangedCommand;
 			}
 		}
 
@@ -172,6 +210,7 @@ namespace MyFort.App.ViewModels
 		{
 			await Task.Run(() =>
 			{
+				this.IsDarkTheme = App.AppTheme == Theme.Dark;
 				this.UserName = this.appSettings.Get("Name");
 			});
 		}
@@ -218,6 +257,15 @@ namespace MyFort.App.ViewModels
 			{
 				this.dialogService.ShowAlertAsync(ex.Message, "My Fort", "OK");
 			}
+		}
+
+		/// <summary>
+		/// The ThemeChanged
+		/// </summary>
+		private void ThemeChanged()
+		{
+			this.appSettings.Set("Theme", this.IsDarkTheme ? "Dark" : "Light");
+			MessagingCenter.Send<object, Theme>(this, "ModeChanged", this.IsDarkTheme ? Theme.Dark : Theme.Light);
 		}
 
 		/// <summary>

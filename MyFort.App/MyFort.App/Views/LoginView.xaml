@@ -14,10 +14,11 @@
 		<ScrollView Orientation="Vertical">
 			<Grid VerticalOptions="FillAndExpand">
 				<Image Aspect="AspectFill" Source="drinks.png" />
+				<Grid BackgroundColor="{DynamicResource BackgroundColor}" Opacity="0.8" />
 
 
 				<StackLayout VerticalOptions="Center">
-					<ActivityIndicator IsRunning="{Binding IsLoading}" Color="{DynamicResource Primary}" />
+					<ActivityIndicator IsRunning="{Binding IsLoading}" />
 				</StackLayout>
 				<Grid>
 					<Grid.RowDefinitions>
@@ -40,12 +41,23 @@
 							HorizontalOptions="Center"
 							Text="My Fort"
 							TextColor="White" />
-						<Grid Padding="0,0,0,0">
+						<ctrl:MyEntry
+							Icon="md-email"
+							Keyboard="Email"
+							Placeholder="Email"
+							Text="{Binding Email, Mode=TwoWay}" />
+						<ctrl:MyEntry
+							Icon="md-lock"
+							IsPassword="True"
+							Keyboard="Numeric"
+							Placeholder="Password"
+							Text="{Binding Password, Mode=TwoWay}" />
+						<!--<Grid Padding="0,0,0,0">
 							<ctrl:IconFrame
 								Padding="10,5,5,5"
-								BackgroundColor="{DynamicResource LoginTextColor}"
+								BackgroundColor="{DynamicResource PrimaryDark}"
 								HasShadow="false"
-								OutlineColor="{DynamicResource LoginTextColor}">
+								OutlineColor="{DynamicResource TextPrimaryColor}">
 								<Grid>
 									<Grid.RowDefinitions>
 										<RowDefinition Height="Auto" />
@@ -58,30 +70,26 @@
 										HeightRequest="20"
 										HorizontalOptions="Start"
 										Icon="md-email"
-										IconColor="{DynamicResource LoginHintColor}"
+										IconColor="{DynamicResource TextPrimaryColor}"
 										IconSize="20"
 										WidthRequest="20" />
 
-									<ctrl:IconEntry
+									<Entry
 										x:Name="EntryUserName"
 										Grid.Column="1"
-										BackgroundColor="Transparent"
-										FontSize="15"
-										HeightRequest="40"
 										HorizontalOptions="FillAndExpand"
 										Placeholder="Email"
-										PlaceholderColor="{DynamicResource LoginHintColor}"
 										Text="{Binding Email, Mode=TwoWay}"
-										TextColor="{DynamicResource LoginTextColor}" />
+										Visual="Material" />
 								</Grid>
 							</ctrl:IconFrame>
 						</Grid>
 						<Grid Padding="0,0,0,0">
 							<ctrl:IconFrame
 								Padding="10,5,5,5"
-								BackgroundColor="{DynamicResource LoginTextColor}"
+								BackgroundColor="{DynamicResource PrimaryDark}"
 								HasShadow="false"
-								OutlineColor="{DynamicResource LoginTextColor}">
+								OutlineColor="{DynamicResource TextPrimaryColor}">
 								<Grid>
 									<Grid.RowDefinitions>
 										<RowDefinition Height="Auto" />
@@ -95,26 +103,22 @@
 										HeightRequest="20"
 										HorizontalOptions="Start"
 										Icon="md-lock"
-										IconColor="{DynamicResource LoginHintColor}"
+										IconColor="{DynamicResource TextPrimaryColor}"
 										IconSize="20"
 										WidthRequest="20" />
 
-									<ctrl:IconEntry
+									<Entry
 										x:Name="EntryPassword"
 										Grid.Column="1"
-										BackgroundColor="Transparent"
-										FontSize="15"
-										HeightRequest="40"
 										HorizontalOptions="FillAndExpand"
 										IsPassword="True"
 										Keyboard="Numeric"
 										Placeholder="Password"
-										PlaceholderColor="{DynamicResource LoginHintColor}"
 										Text="{Binding Password, Mode=TwoWay}"
-										TextColor="{DynamicResource LoginTextColor}" />
+										Visual="Material" />
 								</Grid>
 							</ctrl:IconFrame>
-						</Grid>
+						</Grid>-->
 						<Button
 							BackgroundColor="{DynamicResource Primary}"
 							Command="{Binding LoginCommand}"
@@ -130,7 +134,7 @@
 						VerticalOptions="EndAndExpand">
 						<Button
 							Margin="30"
-							BackgroundColor="#5CFFFFFF"
+							BackgroundColor="#1FFFFFFF"
 							Command="{Binding RegisterCommand}"
 							FontSize="Medium"
 							Text="Click here to Sign up" />
@@ -144,13 +148,7 @@
 						</Label>-->
 					</Grid>
 				</Grid>
-
-				<StackLayout VerticalOptions="Center">
-					<ActivityIndicator
-						IsRunning="True"
-						IsVisible="{Binding IsBusy}"
-						Color="{DynamicResource Primary}" />
-				</StackLayout>
+				<ctrl:WaitIndicator IsBusy="{Binding IsBusy}" Text="Logging in..." />
 
 			</Grid>
 		</ScrollView>

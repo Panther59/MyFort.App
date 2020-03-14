@@ -9,6 +9,7 @@
 	xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	Title="{Binding Title}"
+	Style="{DynamicResource ContentPageStyle}"
 	mc:Ignorable="d">
 	<ContentPage.Content>
 		<Grid VerticalOptions="StartAndExpand">
@@ -44,12 +45,18 @@
 					x:TypeArguments="enum:TypeOfUser"
 					SelectedItem="{Binding User.Type, Mode=TwoWay}"
 					Visual="Material" />
-				<Grid Padding="0">
+				<Grid
+					Margin="0"
+					Padding="20,10"
+					BackgroundColor="{DynamicResource PrimaryDark}">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto" />
 						<ColumnDefinition Width="Auto" />
 					</Grid.ColumnDefinitions>
-					<Label Text="Is Active" />
+					<Label
+						FontSize="Medium"
+						Text="Is Active"
+						VerticalOptions="Center" />
 					<Switch
 						Grid.Column="1"
 						IsToggled="{Binding User.IsActive, Mode=TwoWay}"
@@ -65,13 +72,7 @@
 					Visual="Material" />
 
 			</StackLayout>
-			<StackLayout IsVisible="{Binding IsBusy}" VerticalOptions="CenterAndExpand">
-				<ActivityIndicator
-					HorizontalOptions="Center"
-					IsRunning="True"
-					Visual="Material" />
-				<Label HorizontalOptions="CenterAndExpand" Text="Saving user" />
-			</StackLayout>
+			<ctrl:WaitIndicator IsBusy="{Binding IsBusy}" Text="Saving User" />
 		</Grid>
 	</ContentPage.Content>
 </ContentPage>

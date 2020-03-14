@@ -4,9 +4,11 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+	xmlns:ctrl="clr-namespace:MyFort.App.Controls"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	Title="New Visit"
+	Style="{DynamicResource ContentPageStyle}"
 	mc:Ignorable="d">
 	<ContentPage.Content>
 		<Grid VerticalOptions="StartAndExpand">
@@ -33,6 +35,7 @@
 					HorizontalOptions="FillAndExpand"
 					Placeholder="Meeting With"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
+					Style="{DynamicResource EntryStyle}"
 					Text="{Binding MeetingWith, Mode=TwoWay}"
 					Visual="Material" />
 				<Editor
@@ -56,10 +59,7 @@
 					Visual="Material" />
 
 			</StackLayout>
-			<StackLayout IsVisible="{Binding IsBusy}" VerticalOptions="CenterAndExpand">
-				<ActivityIndicator HorizontalOptions="Center" IsRunning="True" />
-				<Label HorizontalOptions="CenterAndExpand" Text="Saving Outlet" />
-			</StackLayout>
+			<ctrl:WaitIndicator IsBusy="{Binding IsBusy}" Text="Saving Outlet" />
 		</Grid>
 	</ContentPage.Content>
 </ContentPage>

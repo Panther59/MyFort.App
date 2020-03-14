@@ -13,6 +13,7 @@ namespace MyFort.App.Controls
 	{
 		public EnumBindablePicker()
 		{
+			this.SetDynamicResource(Picker.StyleProperty, "EnumPicker");
 			this.BindingContextChanged += EnumBindablePicker_BindingContextChanged;
 			SelectedIndexChanged += OnSelectedIndexChanged;
 
@@ -72,8 +73,8 @@ namespace MyFort.App.Controls
 
 		private static string GetEnumDescription(object value)
 		{
-			string result = value.ToString();
-			DisplayAttribute attribute = typeof(T).GetRuntimeField(value.ToString()).GetCustomAttributes<DisplayAttribute>(false).SingleOrDefault();
+			string result = value?.ToString();
+			DisplayAttribute attribute = typeof(T)?.GetRuntimeField(value?.ToString())?.GetCustomAttributes<DisplayAttribute>(false)?.SingleOrDefault();
 			if (attribute != null)
 			{
 				result = attribute.Description;

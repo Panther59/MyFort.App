@@ -4,11 +4,13 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:conv="clr-namespace:MyFort.App.Extensions"
+	xmlns:ctrl="clr-namespace:MyFort.App.Controls"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:views="clr-namespace:MyFort.App.Views"
 	x:Name="UserPage"
 	Title="Users"
+	Style="{DynamicResource ContentPageStyle}"
 	mc:Ignorable="d">
 	<ContentPage.Content>
 
@@ -18,7 +20,7 @@
 			VerticalOptions="FillAndExpand">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<ViewCell>
+					<ctrl:ExtendedViewCell SelectedBackgroundColor="{DynamicResource PrimaryDark}">
 						<Grid Margin="5">
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto" />
@@ -50,9 +52,10 @@
 								Grid.Row="4"
 								Command="{Binding BindingContext.ModifyUserCommand, Source={x:Reference Name=UserPage}}"
 								CommandParameter="{Binding}"
-								Text="Modify" />
+								Text="Modify"
+								Visual="Material" />
 						</Grid>
-					</ViewCell>
+					</ctrl:ExtendedViewCell>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 

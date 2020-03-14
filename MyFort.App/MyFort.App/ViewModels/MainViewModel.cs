@@ -11,11 +11,12 @@ namespace MyFort.App.ViewModels
 	using Plugin.GoogleClient;
 	using System;
 	using System.Threading.Tasks;
+    using Xamarin.Forms;
 
-	/// <summary>
-	/// Defines the <see cref="MainViewModel" />
-	/// </summary>
-	public class MainViewModel : BaseViewModel
+    /// <summary>
+    /// Defines the <see cref="MainViewModel" />
+    /// </summary>
+    public class MainViewModel : BaseViewModel
 	{
 		/// <summary>
 		/// Defines the appSettings
@@ -72,6 +73,16 @@ namespace MyFort.App.ViewModels
 		{
 			try
 			{
+				var theme = this.appSettings.Get("Theme");
+				if (theme != null && theme == "Dark")
+				{
+					MessagingCenter.Send<object, Theme>(this, "ModeChanged", Theme.Dark);
+				}
+				else
+				{
+					MessagingCenter.Send<object, Theme>(this, "ModeChanged", Theme.Light);
+				}
+
 				var token = this.appSettings.Get("Token");
 				if (token != null)
 				{

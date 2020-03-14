@@ -8,7 +8,8 @@
 	mc:Ignorable="d">
 
 	<Application.Resources>
-		<ResourceDictionary>
+		<ResourceDictionary Source="/Styles/LightTheme.xaml" />
+		<!--<ResourceDictionary>
 			<Color x:Key="PrimaryLight">#6CA5F3</Color>
 			<Color x:Key="Primary">#448FF5</Color>
 			<Color x:Key="PrimaryDarkBackground">#06101E</Color>
@@ -35,7 +36,7 @@
 			<Color x:Key="LoginButtonColor">#448FF5</Color>
 			<Color x:Key="LoginButtonTextColor">White</Color>
 
-		</ResourceDictionary>
+		</ResourceDictionary>-->
 	</Application.Resources>
 
 </Application>

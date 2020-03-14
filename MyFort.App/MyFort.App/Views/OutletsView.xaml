@@ -3,11 +3,13 @@
 	x:Class="MyFort.App.Views.OutletsView"
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:ctrl="clr-namespace:MyFort.App.Controls"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
 	xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	x:Name="OutletsPaage"
 	Title="Outlets"
+	Style="{DynamicResource ContentPageStyle}"
 	mc:Ignorable="d">
 	<ContentPage.ToolbarItems>
 		<ToolbarItem
@@ -22,7 +24,7 @@
 			VerticalOptions="FillAndExpand">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<ViewCell>
+					<ctrl:ExtendedViewCell SelectedBackgroundColor="{DynamicResource PrimaryDark}">
 						<Grid Margin="5">
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto" />
@@ -45,9 +47,10 @@
 								Grid.Row="5"
 								Command="{Binding BindingContext.ModifyOutletCommand, Source={x:Reference Name=OutletsPaage}}"
 								CommandParameter="{Binding}"
-								Text="Modify" />
+								Text="Modify"
+								Visual="Material" />
 						</Grid>
-					</ViewCell>
+					</ctrl:ExtendedViewCell>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 

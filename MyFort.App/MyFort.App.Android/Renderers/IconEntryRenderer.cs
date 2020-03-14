@@ -47,32 +47,32 @@ namespace MyFort.App.Droid.Renderers
 		{
 			base.OnElementChanged(e);
 
-			if (this.Control != null)
-			{
+			//if (this.Control != null)
+			//{
 				
-				GradientDrawable gd = new GradientDrawable();
-				gd.SetColor(global::Android.Graphics.Color.Transparent);
-				this.Control.SetBackgroundDrawable(gd);
-				gd.SetStroke(1, global::Android.Graphics.Color.Transparent);
-				Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Gray));
+			//	GradientDrawable gd = new GradientDrawable();
+			//	gd.SetColor(global::Android.Graphics.Color.Transparent);
+			//	this.Control.SetBackgroundDrawable(gd);
+			//	gd.SetStroke(1, global::Android.Graphics.Color.Transparent);
+			//	Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Gray));
 
-				e.NewElement.Unfocused += (sender, evt) =>
-				{
-					GradientDrawable gd = new GradientDrawable();
-					gd.SetColor(global::Android.Graphics.Color.Transparent);
-					this.Control.SetBackgroundDrawable(gd);
-					Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Gray));
-					gd.SetStroke(1, global::Android.Graphics.Color.Transparent);
-				};
-				e.NewElement.Focused += (sender, evt) =>
-				{
-					GradientDrawable gd = new GradientDrawable();
-					gd.SetColor(global::Android.Graphics.Color.Transparent);
-					this.Control.SetBackgroundDrawable(gd);
-					gd.SetStroke(1, global::Android.Graphics.Color.LightBlue);
-					Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.LightBlue));
-				};
-			}
+			//	e.NewElement.Unfocused += (sender, evt) =>
+			//	{
+			//		GradientDrawable gd = new GradientDrawable();
+			//		gd.SetColor(global::Android.Graphics.Color.Transparent);
+			//		this.Control.SetBackgroundDrawable(gd);
+			//		Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.Gray));
+			//		gd.SetStroke(1, global::Android.Graphics.Color.Transparent);
+			//	};
+			//	e.NewElement.Focused += (sender, evt) =>
+			//	{
+			//		GradientDrawable gd = new GradientDrawable();
+			//		gd.SetColor(global::Android.Graphics.Color.Transparent);
+			//		this.Control.SetBackgroundDrawable(gd);
+			//		gd.SetStroke(1, global::Android.Graphics.Color.LightBlue);
+			//		Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.LightBlue));
+			//	};
+			//}
 		}
 
 		#endregion

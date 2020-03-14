@@ -23,13 +23,13 @@ namespace MyFort.App.Navigation
 		{
 			get
 			{
-				if (_presentationRoot.MainRootPage is MasterDetailPage && (_presentationRoot.MainRootPage as MasterDetailPage).Detail is NavigationPage)
+				if (_presentationRoot.MainPage is MasterDetailPage && (_presentationRoot.MainPage as MasterDetailPage).Detail is NavigationPage)
 				{
-					return ((_presentationRoot.MainRootPage as MasterDetailPage).Detail as NavigationPage).Navigation;
+					return ((_presentationRoot.MainPage as MasterDetailPage).Detail as NavigationPage).Navigation;
 				}
 				else
 				{
-					return _presentationRoot.MainRootPage.Navigation;
+					return _presentationRoot.MainPage.Navigation;
 				}
 			}
 		}
@@ -38,9 +38,9 @@ namespace MyFort.App.Navigation
 		{
 			var page = _viewLocator.CreateAndBindPageFor(viewModel);
 
-			IEnumerable<BaseViewModel> viewModelsToDismiss = FindViewModelsToDismiss(_presentationRoot.MainRootPage);
+			IEnumerable<BaseViewModel> viewModelsToDismiss = FindViewModelsToDismiss(_presentationRoot.MainPage);
 
-			if (_presentationRoot.MainRootPage is NavigationPage navPage)
+			if (_presentationRoot.MainPage is NavigationPage navPage)
 			{
 				// If we're replacing a navigation page, unsub from events
 				navPage.PopRequested -= NavPagePopRequested;
@@ -48,7 +48,7 @@ namespace MyFort.App.Navigation
 
 			viewModel.BeforeFirstShown();
 
-			_presentationRoot.MainRootPage = page;
+			_presentationRoot.MainPage = page;
 
 			foreach (BaseViewModel toDismiss in viewModelsToDismiss)
 			{
@@ -63,9 +63,9 @@ namespace MyFort.App.Navigation
 
 			NavigationPage newNavigationPage = new NavigationPage(page);
 
-			IEnumerable<BaseViewModel> viewModelsToDismiss = FindViewModelsToDismiss(_presentationRoot.MainRootPage);
+			IEnumerable<BaseViewModel> viewModelsToDismiss = FindViewModelsToDismiss(_presentationRoot.MainPage);
 
-			if (_presentationRoot.MainRootPage is NavigationPage navPage)
+			if (_presentationRoot.MainPage is NavigationPage navPage)
 			{
 				navPage.PopRequested -= NavPagePopRequested;
 			}
@@ -74,7 +74,7 @@ namespace MyFort.App.Navigation
 
 			// Listen for back button presses on the new navigation bar
 			newNavigationPage.PopRequested += NavPagePopRequested;
-			_presentationRoot.MainRootPage = newNavigationPage;
+			_presentationRoot.MainPage = newNavigationPage;
 
 			foreach (BaseViewModel toDismiss in viewModelsToDismiss)
 			{
@@ -177,9 +177,9 @@ namespace MyFort.App.Navigation
 			var masterViewModel = _viewLocator.GetViewModel<TMasterViewModel>();
 			page.Master.BindingContext = masterViewModel;
 
-			IEnumerable<BaseViewModel> viewModelsToDismiss = FindViewModelsToDismiss(_presentationRoot.MainRootPage);
+			IEnumerable<BaseViewModel> viewModelsToDismiss = FindViewModelsToDismiss(_presentationRoot.MainPage);
 
-			if (_presentationRoot.MainRootPage is NavigationPage navPage)
+			if (_presentationRoot.MainPage is NavigationPage navPage)
 			{
 				navPage.PopRequested -= NavPagePopRequested;
 			}
@@ -190,7 +190,7 @@ namespace MyFort.App.Navigation
 
 			// Listen for back button presses on the new navigation bar
 			newNavigationPage.PopRequested += NavPagePopRequested;
-			_presentationRoot.MainRootPage = page;
+			_presentationRoot.MainPage = page;
 
 			foreach (BaseViewModel toDismiss in viewModelsToDismiss)
 			{

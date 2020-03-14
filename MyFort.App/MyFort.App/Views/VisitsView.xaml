@@ -3,9 +3,11 @@
 	x:Class="MyFort.App.Views.VisitsView"
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:ctrl="clr-namespace:MyFort.App.Controls"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	Title="Visits"
+	Style="{DynamicResource ContentPageStyle}"
 	mc:Ignorable="d">
 	<ContentPage.ToolbarItems>
 		<ToolbarItem
@@ -22,17 +24,26 @@
 			<Grid Margin="10">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
-				<DatePicker Date="{Binding BusinessDate}" Visual="Material" />
-				<Button
+				<Label
+					FontSize="Subtitle"
+					Text="Date:"
+					VerticalOptions="Center" />
+				<DatePicker
 					Grid.Column="1"
+					Date="{Binding BusinessDate}"
+					Visual="Material" />
+				<Button
+					Grid.Column="2"
 					BackgroundColor="{DynamicResource Primary}"
 					Command="{Binding GetVisitsCommand}"
 					CornerRadius="50"
 					HorizontalOptions="FillAndExpand"
 					Text="Get Visits"
 					TextColor="{DynamicResource LoginButtonTextColor}"
+					VerticalOptions="Center"
 					Visual="Material" />
 			</Grid>
 			<ListView
@@ -42,7 +53,7 @@
 				VerticalOptions="FillAndExpand">
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<ViewCell>
+						<ctrl:ExtendedViewCell SelectedBackgroundColor="{DynamicResource PrimaryDark}">
 							<Grid Margin="5">
 								<Grid.RowDefinitions>
 									<RowDefinition Height="Auto" />
@@ -68,7 +79,7 @@
 								<Label Grid.Row="3" Text="{Binding Notes, StringFormat='Note: {0}'}" />
 								<Label Grid.Row="4" Text="{Binding MeetingWith}" />
 							</Grid>
-						</ViewCell>
+						</ctrl:ExtendedViewCell>
 					</DataTemplate>
 				</ListView.ItemTemplate>
 

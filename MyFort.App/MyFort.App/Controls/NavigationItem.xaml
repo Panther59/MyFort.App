@@ -20,7 +20,8 @@
 			Grid.Column="1"
 			FontSize="Medium"
 			Text="{Binding Text, Source={x:Reference this}}"
-			TextColor="{Binding TextColor, Source={x:Reference this}}" />
+			TextColor="{Binding TextColor, Source={x:Reference this}}"
+			VerticalOptions="CenterAndExpand" />
 		<Grid.Behaviors>
 			<behaviors:ViewTappedButtonBehavior
 				AnimationType="Fade"

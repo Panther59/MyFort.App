@@ -3,12 +3,15 @@
 	x:Class="MyFort.App.Views.MasterView"
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:beh="clr-namespace:Behaviors;assembly=Behaviors"
+	xmlns:behaviors="clr-namespace:MyFort.App.Behavior"
 	xmlns:ctrl="clr-namespace:MyFort.App.Controls"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:icon="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="clr-namespace:MyFort.App.ViewModels"
 	Title="Menu"
-	BackgroundColor="{DynamicResource DrawerMenuItemBackgroundColor}"
+	BackgroundColor="{DynamicResource PrimaryDark}"
 	mc:Ignorable="d">
 	<ContentPage.Content>
 		<Grid>
@@ -32,50 +35,72 @@
 					FontSize="Large"
 					HorizontalOptions="CenterAndExpand"
 					Text="{Binding UserName}"
-					TextColor="{DynamicResource DrawerMenuItemTextColor}"
 					VerticalOptions="End" />
 			</Grid>
 			<StackLayout Grid.Row="1" Spacing="15">
-				<ContentView BackgroundColor="{DynamicResource DrawerMenuItemSeparatorColor}" HeightRequest="1" />
-				<ctrl:NavigationItem
-					Command="{Binding HomeCommand}"
-					Icon="md-home"
-					Text="Home"
-					TextColor="{DynamicResource DrawerMenuItemTextColor}" />
+				<ContentView BackgroundColor="{DynamicResource TextSecondaryColor}" HeightRequest="1" />
 				<ctrl:NavigationItem
 					Command="{Binding UsersCommand}"
 					CommandParameter="2"
 					Icon="md-supervisor-account"
 					Text="Users"
-					TextColor="{DynamicResource DrawerMenuItemTextColor}" />
+					TextColor="{DynamicResource TextPrimaryColor}" />
 				<ctrl:NavigationItem
 					Command="{Binding OutletsCommand}"
 					CommandParameter="2"
 					Icon="md-store"
 					Text="Outlets"
-					TextColor="{DynamicResource DrawerMenuItemTextColor}" />
-				<ContentView BackgroundColor="{DynamicResource DrawerMenuItemSeparatorColor}" HeightRequest="1" />
+					TextColor="{DynamicResource TextPrimaryColor}" />
+				<ContentView BackgroundColor="{DynamicResource TextSecondaryColor}" HeightRequest="1" />
 
 				<ctrl:NavigationItem
 					Command="{Binding VisitsCommand}"
 					CommandParameter="2"
 					Icon="md-business"
 					Text="Visits"
-					TextColor="{DynamicResource DrawerMenuItemTextColor}" />
+					TextColor="{DynamicResource TextPrimaryColor}" />
 
 				<ctrl:NavigationItem
 					Command="{Binding MyVisitsCommand}"
 					CommandParameter="2"
 					Icon="md-work"
 					Text="My Visits"
-					TextColor="{DynamicResource DrawerMenuItemTextColor}" />
-				<ContentView BackgroundColor="{DynamicResource DrawerMenuItemSeparatorColor}" HeightRequest="1" />
+					TextColor="{DynamicResource TextPrimaryColor}" />
+				<ContentView BackgroundColor="{DynamicResource TextSecondaryColor}" HeightRequest="1" />
 				<ctrl:NavigationItem
 					Command="{Binding LogoutCommand}"
 					CommandParameter="2"
 					Icon="md-exit-to-app"
 					Text="Logout"
-					TextColor="{DynamicResource DrawerMenuItemTextColor}" />
+					TextColor="{DynamicResource TextPrimaryColor}" />
+				<Grid Padding="10">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50" />
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<icon:IconImage
+						Grid.Column="0"
+						Icon="md-brightness-medium"
+						IconColor="{DynamicResource TextPrimaryColor}"
+						IconSize="40" />
+					<Label
+						Grid.Column="1"
+						FontSize="Medium"
+						Text="Dark Theme?"
+						TextColor="{DynamicResource TextPrimaryColor}"
+						VerticalOptions="CenterAndExpand" />
+					<Switch
+						Grid.Column="2"
+						IsToggled="{Binding IsDarkTheme, Mode=TwoWay}"
+						Visual="Material">
+						<Switch.Behaviors>
+							<beh:EventHandlerBehavior EventName="Toggled">
+								<beh:InvokeCommandAction Command="{Binding ThemeChangedCommand}" />
+							</beh:EventHandlerBehavior>
+						</Switch.Behaviors>
+					</Switch>
+				</Grid>
 			</StackLayout>
 		</Grid>
 	</ContentPage.Content>

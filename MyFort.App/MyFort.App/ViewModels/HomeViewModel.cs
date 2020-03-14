@@ -33,6 +33,11 @@ namespace MyFort.App.ViewModels
 		private readonly IViewLocator viewLocator;
 
 		/// <summary>
+		/// Defines the addOutletCommand
+		/// </summary>
+		public ICommand addOutletCommand;
+
+		/// <summary>
 		/// Defines the addVisitCommand
 		/// </summary>
 		public ICommand addVisitCommand;
@@ -54,6 +59,22 @@ namespace MyFort.App.ViewModels
 		}
 
 		/// <summary>
+		/// Gets the AddOutletCommand
+		/// </summary>
+		public ICommand AddOutletCommand
+		{
+			get
+			{
+				if (this.addOutletCommand == null)
+				{
+					this.addOutletCommand = new Command(async () => await this.AddOutlet());
+				}
+
+				return this.addOutletCommand;
+			}
+		}
+
+		/// <summary>
 		/// Gets the AddVisitCommand
 		/// </summary>
 		public ICommand AddVisitCommand
@@ -67,6 +88,16 @@ namespace MyFort.App.ViewModels
 
 				return this.addVisitCommand;
 			}
+		}
+
+		/// <summary>
+		/// The AddOutlet
+		/// </summary>
+		private async Task AddOutlet()
+		{
+			var vm = this.viewLocator.GetViewModel<OutletDetailViewModel>();
+			vm.Initialize();
+			await this.navigationService.NavigateTo(vm);
 		}
 
 		/// <summary>

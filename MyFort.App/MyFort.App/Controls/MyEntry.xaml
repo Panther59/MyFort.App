@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Grid
+	x:Class="MyFort.App.Controls.MyEntry"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Name="this"
+	mc:Ignorable="d">
+	<Grid Padding="10,5,5,5" BackgroundColor="{DynamicResource PrimaryDark}">
+
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<iconize:IconImage
+				HeightRequest="20"
+				HorizontalOptions="Start"
+				Icon="{Binding Icon, Source={x:Reference this}}"
+				IconColor="{Binding TextColor, Source={x:Reference this}}"
+				IconSize="20"
+				WidthRequest="20" />
+
+			<Entry
+				x:Name="InlineEntry"
+				Grid.Column="1"
+				Placeholder="{Binding Placeholder, Source={x:Reference this}}"
+				PlaceholderColor="{Binding PlaceholderColor, Source={x:Reference this}}"
+				Text="{Binding Text, Mode=TwoWay, Source={x:Reference this}}"
+				TextColor="{Binding TextColor, Source={x:Reference this}}"
+				Visual="Material" />
+		</Grid>
+	</Grid>
+</Grid>

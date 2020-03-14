@@ -16,6 +16,6 @@ namespace MyFort.App.Navigation
 		/// <summary>
 		/// Gets or sets the MainPage
 		/// </summary>
-		Page MainRootPage { get; set; }
+		Page MainPage { get; set; }
 	}
 }

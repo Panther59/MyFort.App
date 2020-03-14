@@ -196,11 +196,13 @@ namespace MyFort.App.ViewModels
 				if (string.IsNullOrEmpty(Password) || Password.Length < 6)
 				{
 					await this.dialogService.ShowAlertAsync("Enter valid password containing at least 6 digits", "Sign Up", "OK");
+					return;
 				}
 
 				if (this.Password != this.ConfirmPassword)
 				{
 					await this.dialogService.ShowAlertAsync("Both passwords dont match, please type again", "Sign Up", "OK");
+					return;
 				}
 
 				this.IsBusy = true;

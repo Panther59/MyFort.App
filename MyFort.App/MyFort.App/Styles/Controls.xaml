@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:ctrl="clr-namespace:MyFort.App.Controls"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+
+
+	<Style TargetType="Label">
+		<Setter Property="TextColor" Value="{DynamicResource TextPrimaryColor}" />
+	</Style>
+
+	<Style TargetType="NavigationPage">
+		<Setter Property="BarBackgroundColor" Value="{DynamicResource Primary}" />
+		<Setter Property="BarTextColor" Value="{DynamicResource PrimaryText}" />
+	</Style>
+
+	<Style x:Key="ContentPageStyle" TargetType="ContentPage">
+		<Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
+	</Style>
+
+	<Style TargetType="Entry">
+		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
+		<Setter Property="PlaceholderColor" Value="{DynamicResource PrimaryLight}" />
+		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+	</Style>
+
+	<Style TargetType="ctrl:MyEntry">
+		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
+		<Setter Property="PlaceholderColor" Value="{DynamicResource PrimaryLight}" />
+		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+		<Style.Triggers>
+			<Trigger TargetType="ctrl:MyEntry" Property="IsEnabled" Value="False">
+				<Setter Property="TextColor" Value="{DynamicResource PrimaryGrayText}" />
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+	<Style TargetType="Editor">
+		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
+		<Setter Property="PlaceholderColor" Value="{DynamicResource PrimaryGrayText}" />
+		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+	</Style>
+
+	<Style TargetType="Picker">
+		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
+		<Setter Property="TitleColor" Value="{DynamicResource PrimaryGrayText}" />
+		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+	</Style>
+
+	<Style x:Key="EnumPicker" TargetType="ctrl:EnumBindablePicker`1">
+		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
+		<Setter Property="TitleColor" Value="{DynamicResource PrimaryGrayText}" />
+		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+	</Style>
+
+	<Style TargetType="DatePicker">
+		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
+		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+	</Style>
+
+	<Style TargetType="Button">
+		<Setter Property="BackgroundColor" Value="{DynamicResource Primary}" />
+		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+	</Style>
+
+	<Style TargetType="ActivityIndicator">
+		<Setter Property="Color" Value="{DynamicResource PrimaryText}" />
+	</Style>
+
+	<Style TargetType="ctrl:ExtendedViewCell">
+		<Setter Property="SelectedBackgroundColor" Value="LightBlue" />
+	</Style>
+
+	<Style TargetType="ctrl:WaitIndicator">
+		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryOpac}" />
+	</Style>
+
+	<Style TargetType="Switch">
+		<Setter Property="ThumbColor" Value="{DynamicResource PrimaryText}" />
+		<Setter Property="OnColor" Value="{DynamicResource Primary}" />
+		<Style.Triggers>
+			<Trigger TargetType="Switch" Property="IsToggled" Value="True">
+				<Setter Property="ThumbColor" Value="{DynamicResource Accent}" />
+				<Setter Property="OnColor" Value="{DynamicResource PrimaryText}" />
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+</ResourceDictionary>
