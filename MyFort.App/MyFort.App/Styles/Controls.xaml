@@ -82,11 +82,11 @@
 
 	<Style TargetType="Switch">
 		<Setter Property="ThumbColor" Value="{DynamicResource PrimaryText}" />
-		<Setter Property="OnColor" Value="{DynamicResource Primary}" />
+		<Setter Property="OnColor" Value="{DynamicResource PrimaryLight}" />
 		<Style.Triggers>
 			<Trigger TargetType="Switch" Property="IsToggled" Value="True">
 				<Setter Property="ThumbColor" Value="{DynamicResource Accent}" />
-				<Setter Property="OnColor" Value="{DynamicResource PrimaryText}" />
+				<Setter Property="OnColor" Value="{DynamicResource AccentLight}" />
 			</Trigger>
 		</Style.Triggers>
 	</Style>

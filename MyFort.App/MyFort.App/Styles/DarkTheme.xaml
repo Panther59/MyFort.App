@@ -16,11 +16,11 @@
 	<Color x:Key="PrimaryLight">#3E5371</Color>
 	<Color x:Key="Primary">#264065</Color>
 	<Color x:Key="PrimaryDark">#1F2A3A</Color>
-	<Color x:Key="PrimaryText">#B0FFFFFF</Color>
+	<Color x:Key="PrimaryText">#FFFFFF</Color>
 	<Color x:Key="PrimaryOpac">#78264065</Color>
 	<Color x:Key="PrimaryGrayText">#444444</Color>
 
-	<Color x:Key="AccentLight">#60F456</Color>
+	<Color x:Key="AccentLight">#A8E8A4</Color>
 	<Color x:Key="Accent">#42F036</Color>
 	<Color x:Key="AccentDark">#36C02D</Color>
 	<Color x:Key="AccentText">#FF000000</Color>

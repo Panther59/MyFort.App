@@ -6,7 +6,7 @@
 	xmlns:behaviors="clr-namespace:MyFort.App.Behavior"
 	xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
 	x:Name="this">
-	<Grid Padding="10">
+	<Grid Padding="10" VerticalOptions="FillAndExpand">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="50" />
 			<ColumnDefinition Width="*" />

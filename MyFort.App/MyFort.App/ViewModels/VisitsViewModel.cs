@@ -20,17 +20,25 @@ namespace MyFort.App.ViewModels
 	/// </summary>
 	public class VisitsViewModel : BaseViewModel
 	{
-		public VisitsViewModel(
-			IVisitsService visitsService,
-			IViewLocator viewLocator,
-			IDialogService dialogService,
-			INavigationService navigationService)
-		{
-			this.visitsService = visitsService;
-			this.viewLocator = viewLocator;
-			this.dialogService = dialogService;
-			this.navigationService = navigationService;
-		}
+		/// <summary>
+		/// Defines the dialogService
+		/// </summary>
+		private readonly IDialogService dialogService;
+
+		/// <summary>
+		/// Defines the navigationService
+		/// </summary>
+		private readonly INavigationService navigationService;
+
+		/// <summary>
+		/// Defines the viewLocator
+		/// </summary>
+		private readonly IViewLocator viewLocator;
+
+		/// <summary>
+		/// Defines the visitsService
+		/// </summary>
+		private readonly IVisitsService visitsService;
 
 		/// <summary>
 		/// Defines the addVisitCommand
@@ -48,13 +56,33 @@ namespace MyFort.App.ViewModels
 		private DateTime businessDate;
 
 		/// <summary>
+		/// Defines the isNoVisits
+		/// </summary>
+		private bool isNoVisits;
+
+		/// <summary>
 		/// Defines the visits
 		/// </summary>
 		private List<Visit> visits;
-		private readonly IVisitsService visitsService;
-		private readonly IViewLocator viewLocator;
-		private readonly IDialogService dialogService;
-		private readonly INavigationService navigationService;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="VisitsViewModel"/> class.
+		/// </summary>
+		/// <param name="visitsService">The visitsService<see cref="IVisitsService"/></param>
+		/// <param name="viewLocator">The viewLocator<see cref="IViewLocator"/></param>
+		/// <param name="dialogService">The dialogService<see cref="IDialogService"/></param>
+		/// <param name="navigationService">The navigationService<see cref="INavigationService"/></param>
+		public VisitsViewModel(
+			IVisitsService visitsService,
+			IViewLocator viewLocator,
+			IDialogService dialogService,
+			INavigationService navigationService)
+		{
+			this.visitsService = visitsService;
+			this.viewLocator = viewLocator;
+			this.dialogService = dialogService;
+			this.navigationService = navigationService;
+		}
 
 		/// <summary>
 		/// Gets the AddVisitCommand
@@ -101,6 +129,18 @@ namespace MyFort.App.ViewModels
 		}
 
 		/// <summary>
+		/// Gets or sets a value indicating whether IsNoVisits
+		/// </summary>
+		public bool IsNoVisits
+		{
+			get { return this.isNoVisits; }
+			set
+			{
+				this.SetProperty(ref this.isNoVisits, value);
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets a value indicating whether IsPersonalView
 		/// </summary>
 		public bool IsPersonalView { get; set; }
@@ -118,6 +158,40 @@ namespace MyFort.App.ViewModels
 		}
 
 		/// <summary>
+		/// The BeforeFirstShown
+		/// </summary>
+		/// <returns>The <see cref="Task"/></returns>
+		public async override Task BeforeFirstShown()
+		{
+			try
+			{
+				this.BusinessDate = DateTime.Now;
+				this.Title = this.IsPersonalView ? "My Visits" : "Visits";
+				await this.GetVisits();
+			}
+			catch (Exception ex)
+			{
+				await this.dialogService.ShowAlertAsync(ex.Message, "Visits", "OK");
+			}
+		}
+
+		/// <summary>
+		/// The BeforeNavigatedBack
+		/// </summary>
+		/// <returns>The <see cref="Task"/></returns>
+		public async override Task BeforeNavigatedBack()
+		{
+			try
+			{
+				await this.GetVisits();
+			}
+			catch (Exception ex)
+			{
+				await this.dialogService.ShowAlertAsync(ex.Message, "Visits", "OK");
+			}
+		}
+
+		/// <summary>
 		/// The AddVisit
 		/// </summary>
 		private void AddVisit()
@@ -129,6 +203,7 @@ namespace MyFort.App.ViewModels
 		/// <summary>
 		/// The GetVisits
 		/// </summary>
+		/// <returns>The <see cref="Task"/></returns>
 		private async Task GetVisits()
 		{
 			try
@@ -146,37 +221,19 @@ namespace MyFort.App.ViewModels
 				if (response.IsSuccess)
 				{
 					this.Visits = response.Result;
+					if (this.Visits != null && this.Visits.Count > 0)
+					{
+						this.IsNoVisits = false;
+					}
+					else
+					{
+						this.IsNoVisits = true;
+					}
 				}
 				else
 				{
 					await this.dialogService.ShowAlertAsync(response.Error?.Error ?? "Error loading visits", "Visits", "OK");
 				}
-			}
-			catch (Exception ex)
-			{
-				await this.dialogService.ShowAlertAsync(ex.Message, "Visits", "OK");
-			}
-		}
-
-		public async override Task BeforeFirstShown()
-		{
-			try
-			{
-				this.BusinessDate = DateTime.Now;
-				this.Title = this.IsPersonalView ? "My Visits" : "Visits";
-				await this.GetVisits();
-			}
-			catch (Exception ex)
-			{
-				await this.dialogService.ShowAlertAsync(ex.Message, "Visits", "OK");
-			}
-		}
-
-		public async override Task BeforeNavigatedBack()
-		{
-			try
-			{
-				await this.GetVisits();
 			}
 			catch (Exception ex)
 			{

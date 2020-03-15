@@ -84,6 +84,11 @@
 				</ListView.ItemTemplate>
 
 			</ListView>
+			<Label
+				Grid.Row="1"
+				FontSize="Medium"
+				IsVisible="{Binding IsNoVisits}"
+				Text="No Visits Records Found." />
 		</Grid>
 	</ContentPage.Content>
 </ContentPage>
