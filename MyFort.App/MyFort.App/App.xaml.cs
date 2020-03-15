@@ -8,6 +8,7 @@ using Unity;
 using CommonServiceLocator;
 using MyFort.App.Navigation;
 using System.Threading.Tasks;
+using MyFort.App.Styles;
 
 namespace MyFort.App
 {
@@ -26,6 +27,7 @@ namespace MyFort.App
 
 		public App(Theme theme)
 		{
+			IsAppLoaded = false;
 			PhoneTheme = theme;
 			InitializeComponent();
 			Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeRegularModule())
@@ -34,23 +36,40 @@ namespace MyFort.App
 						  .With(new Plugin.Iconize.Fonts.MaterialModule());
 			RegisterService();
 
-			StartViewModel viewModel = null;
-			var navigator = Container.Resolve<INavigationService>();
-			var page = navigator.PresentAsNavigatableMainPage(ref viewModel);
-			base.MainPage = page;
-			this.Initialize(viewModel).Wait();
+			var startupService = Container.Resolve<IStartupService>();
+			Task.Run(async () =>
+			{
+				await startupService.Initialize();
+				SetTheme(AppTheme);
+				IsAppLoaded = true;
+			}).Wait();
 		}
 
-		private async Task Initialize(StartViewModel viewModel)
+		public static void SetTheme(Theme mode)
 		{
-			await viewModel.Initialize();
-			IsAppLoaded = true;
+			if (mode == MyFort.App.Theme.Dark)
+			{
+				if (IsAppLoaded && App.AppTheme == MyFort.App.Theme.Dark)
+					return;
+				App.Current.Resources.MergedDictionaries.Clear();
+				App.Current.Resources.MergedDictionaries.Add(new DarkTheme());
+			}
+			else
+			{
+				if (IsAppLoaded && App.AppTheme == MyFort.App.Theme.Light)
+					return;
+				App.Current.Resources.MergedDictionaries.Clear();
+				App.Current.Resources.MergedDictionaries.Add(new LightTheme());
+			}
+
+			App.AppTheme = mode;
 		}
 
 		private void RegisterService()
 		{
 			Container = new UnityContainer();
 			Container.RegisterInstance<IMainPage>(this);
+			Container.RegisterType<IStartupService, StartupService>();
 			Container.RegisterType<IAppSettings, AppSettings>();
 			Container.RegisterType<ILogger, Logger>();
 			Container.RegisterType<IVisitsService, VisitsService>();

@@ -41,13 +41,13 @@
 
 	<Style TargetType="Editor">
 		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
-		<Setter Property="PlaceholderColor" Value="{DynamicResource PrimaryGrayText}" />
+		<Setter Property="PlaceholderColor" Value="{DynamicResource PrimaryLight}" />
 		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
 	</Style>
 
 	<Style TargetType="Picker">
 		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
-		<Setter Property="TitleColor" Value="{DynamicResource PrimaryGrayText}" />
+		<Setter Property="TitleColor" Value="{DynamicResource PrimaryLight}" />
 		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
 	</Style>
 

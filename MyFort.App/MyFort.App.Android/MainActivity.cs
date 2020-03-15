@@ -42,17 +42,9 @@ namespace MyFort.App.Droid
 			Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 			global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 			global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
-			MessagingCenter.Subscribe<object, Theme>(this, "ModeChanged", callback: OnModeChanged);
 			var theme = GetPhoneTheme();
 			LoadApplication(new App(theme));
 			Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
-			SetAppTheme();
-		}
-
-		protected override void OnDestroy()
-		{
-			base.OnDestroy();
-			MessagingCenter.Unsubscribe<object, Theme>(this, "ModeChanged");
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -68,26 +60,6 @@ namespace MyFort.App.Droid
 			GoogleClientManager.OnAuthCompleted(requestCode, resultCode, data);
 		}
 
-		private void OnModeChanged(object arg1, Theme theme)
-		{
-
-			//if (theme == MyFort.App.Theme.Light)
-			//{
-			//	Delegate.SetLocalNightMode(AppCompatDelegate.ModeNightNo);
-			//}
-			//else
-			//{
-			//	Delegate.SetLocalNightMode(AppCompatDelegate.ModeNightYes);
-			//}
-
-			SetTheme(theme);
-		}
-
-		void SetAppTheme()
-		{
-			SetTheme(App.AppTheme);
-		}
-
 		Theme GetPhoneTheme()
 		{
 			if (Resources.Configuration.UiMode.HasFlag(UiMode.NightYes))
@@ -98,23 +70,6 @@ namespace MyFort.App.Droid
 			{
 				return MyFort.App.Theme.Light;
 			}
-		}
-
-		void SetTheme(Theme mode)
-		{
-			if (mode == MyFort.App.Theme.Dark)
-			{
-				if (App.AppTheme == MyFort.App.Theme.Dark)
-					return;
-				App.Current.Resources = new DarkTheme();
-			}
-			else
-			{
-				if (App.AppTheme != MyFort.App.Theme.Dark)
-					return;
-				App.Current.Resources = new LightTheme();
-			}
-			App.AppTheme = mode;
 		}
 	}
 }

@@ -5,10 +5,15 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:s="clr-namespace:MyFort.App.Styles"
 	mc:Ignorable="d">
 
 	<Application.Resources>
-		<ResourceDictionary Source="/Styles/LightTheme.xaml" />
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries />
+		</ResourceDictionary>
+		<!--<ResourceDictionary Source="/Styles/LightTheme.xaml" />
+		<ResourceDictionary Source="/Styles/DarkTheme.xaml" />-->
 		<!--<ResourceDictionary>
 			<Color x:Key="PrimaryLight">#6CA5F3</Color>
 			<Color x:Key="Primary">#448FF5</Color>

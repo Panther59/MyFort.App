@@ -265,7 +265,7 @@ namespace MyFort.App.ViewModels
 		private void ThemeChanged()
 		{
 			this.appSettings.Set("Theme", this.IsDarkTheme ? "Dark" : "Light");
-			MessagingCenter.Send<object, Theme>(this, "ModeChanged", this.IsDarkTheme ? Theme.Dark : Theme.Light);
+			App.SetTheme(this.IsDarkTheme ? Theme.Dark : Theme.Light);
 		}
 
 		/// <summary>

@@ -7,7 +7,7 @@ using Xamarin.Forms.Xaml;
 namespace MyFort.App.Styles
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DarkTheme
+    public partial class DarkTheme : ResourceDictionary
     {
         public DarkTheme()
         {
