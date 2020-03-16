@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+	x:Class="MyFort.App.Controls.TextField"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:iconize="clr-namespace:Plugin.Iconize;assembly=Plugin.Iconize"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Name="this"
+	mc:Ignorable="d">
+	<View.GestureRecognizers>
+		<TapGestureRecognizer x:Name="mainTapGesture" NumberOfTapsRequired="1" />
+	</View.GestureRecognizers>
+	<ContentView.Content>
+		<Grid
+			x:Name="_gridContainer"
+			ColumnSpacing="0"
+			RowSpacing="0">
+			<View.GestureRecognizers>
+				<TapGestureRecognizer x:Name="tapGesture" NumberOfTapsRequired="1" />
+			</View.GestureRecognizers>
+			<Grid.RowDefinitions>
+				<RowDefinition x:Name="_autoSizingRow" Height="56" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			<BoxView
+				x:Name="backgroundCard"
+				Grid.Row="0"
+				Grid.ColumnSpan="3"
+				BackgroundColor="{Binding BackgroundColor, Source={x:Reference this}}"
+				CornerRadius="4,4,0,0" />
+			<iconize:IconImage
+				x:Name="leadingIcon"
+				Margin="5,0,0,0"
+				HeightRequest="30"
+				HorizontalOptions="Start"
+				Icon="{Binding Icon, Source={x:Reference this}}"
+				IconColor="{Binding TextColor, Source={x:Reference this}}"
+				IconSize="30"
+				WidthRequest="30">
+				<iconize:IconImage.Triggers>
+					<Trigger TargetType="iconize:IconImage" Property="Icon" Value="{x:Null}">
+						<Setter Property="IsVisible" Value="False" />
+					</Trigger>
+				</iconize:IconImage.Triggers>
+			</iconize:IconImage>
+
+			<ContentView
+				x:Name="_inputContainer"
+				Grid.Row="0"
+				Grid.Column="1"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="Center">
+				<Entry
+					x:Name="InlineEntry"
+					BackgroundColor="Transparent"
+					Placeholder="{Binding Placeholder, Source={x:Reference this}}"
+					PlaceholderColor="{Binding PlaceholderColor, Source={x:Reference this}}"
+					Text="{Binding Text, Mode=TwoWay, Source={x:Reference this}}"
+					TextColor="{Binding TextColor, Source={x:Reference this}}"
+					Visual="Material">
+					<Entry.Triggers />
+				</Entry>
+
+				<ContentView.Triggers>
+					<DataTrigger
+						Binding="{Binding Source={x:Reference trailingIcon}, Path=IsVisible}"
+						TargetType="ContentView"
+						Value="True">
+						<Setter Property="Grid.ColumnSpan" Value="1" />
+					</DataTrigger>
+				</ContentView.Triggers>
+			</ContentView>
+			<BoxView
+				x:Name="persistentUnderline"
+				Grid.Row="0"
+				Grid.ColumnSpan="3"
+				Margin="5,0,5,1"
+				HeightRequest="1"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="End"
+				Color="{Binding PlaceholderColor, Source={x:Reference this}}" />
+			<BoxView
+				x:Name="underline"
+				Grid.Row="0"
+				Grid.ColumnSpan="3"
+				Margin="0,0,0,-1"
+				HeightRequest="2"
+				HorizontalOptions="Center"
+				IsVisible="False"
+				VerticalOptions="End"
+				WidthRequest="0" />
+			<iconize:IconImage
+				x:Name="trailingIcon"
+				Grid.Column="2"
+				Margin="5,0,0,0"
+				HeightRequest="30"
+				HorizontalOptions="Start"
+				Icon="md-warning"
+				IconColor="{Binding ErrorTextColor, Source={x:Reference this}}"
+				IconSize="30"
+				IsVisible="{Binding HasError, Source={x:Reference this}}"
+				WidthRequest="30" />
+			<Label
+				x:Name="helper"
+				Grid.Row="1"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Margin="10,0,0,3"
+				IsVisible="{Binding HasError, Source={x:Reference this}}"
+				Text="{Binding ErrorText, Source={x:Reference this}}"
+				TextColor="{Binding ErrorTextColor, Source={x:Reference this}}">
+				<Label.Triggers>
+					<Trigger TargetType="Label" Property="Text" Value="">
+						<Setter Property="IsVisible" Value="False" />
+					</Trigger>
+					<Trigger TargetType="Label" Property="Text" Value="{x:Null}">
+						<Setter Property="IsVisible" Value="False" />
+					</Trigger>
+				</Label.Triggers>
+			</Label>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

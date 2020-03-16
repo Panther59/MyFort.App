@@ -12,38 +12,49 @@
 	<ContentPage.Content>
 		<Grid VerticalOptions="StartAndExpand">
 			<StackLayout Margin="10,0" VerticalOptions="StartAndExpand">
-
-				<Entry
+				<ctrl:TextField
+					x:Name="EntryName"
+					HorizontalOptions="FillAndExpand"
+					Icon="md-business"
+					Keyboard="Default"
+					Placeholder="Name *"
+					Text="{Binding Outlet.Name, Mode=TwoWay}"
+					Visual="Material" />
+				<!--<Entry
 					x:Name="EntryName"
 					HorizontalOptions="FillAndExpand"
 					Placeholder="Name *"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding Outlet.Name, Mode=TwoWay}"
-					Visual="Material" />
-				<Entry
+					Visual="Material" />-->
+				<ctrl:TextField
 					x:Name="EntryDescription"
 					HorizontalOptions="FillAndExpand"
+					Icon="md-subject"
 					Placeholder="Description"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding Outlet.Description, Mode=TwoWay}"
 					Visual="Material" />
-				<Entry
+				<ctrl:TextField
 					x:Name="EntryLocation"
 					HorizontalOptions="FillAndExpand"
+					Icon="md-location-on"
 					Placeholder="Location *"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding Outlet.Location, Mode=TwoWay}"
 					Visual="Material" />
-				<Entry
+				<ctrl:TextField
 					x:Name="EntryContactName"
 					HorizontalOptions="FillAndExpand"
+					Icon="md-perm-identity"
 					Placeholder="Contact Name"
 					PlaceholderColor="{DynamicResource LoginHintColor}"
 					Text="{Binding Outlet.ContactName, Mode=TwoWay}"
 					Visual="Material" />
-				<Entry
+				<ctrl:TextField
 					x:Name="EntryContactNumber"
 					HorizontalOptions="FillAndExpand"
+					Icon="md-phone"
 					Keyboard="Telephone"
 					MaxLength="10"
 					Placeholder="Contact Number"

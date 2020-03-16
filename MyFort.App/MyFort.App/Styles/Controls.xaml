@@ -44,6 +44,17 @@
 		</Style.Triggers>
 	</Style>
 
+	<Style TargetType="ctrl:TextField">
+		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
+		<Setter Property="PlaceholderColor" Value="{DynamicResource BackgroundTextAltColor}" />
+		<Setter Property="TextColor" Value="{DynamicResource BackgroundTextColor}" />
+		<Style.Triggers>
+			<Trigger TargetType="ctrl:TextField" Property="IsEnabled" Value="False">
+				<Setter Property="TextColor" Value="{DynamicResource PrimaryGrayText}" />
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
 	<Style TargetType="Editor">
 		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
 		<Setter Property="PlaceholderColor" Value="{DynamicResource BackgroundTextAltColor}" />
