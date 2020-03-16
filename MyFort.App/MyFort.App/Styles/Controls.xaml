@@ -10,7 +10,7 @@
 
 
 	<Style TargetType="Label">
-		<Setter Property="TextColor" Value="{DynamicResource TextPrimaryColor}" />
+		<Setter Property="TextColor" Value="{DynamicResource BackgroundTextColor}" />
 	</Style>
 
 	<Style TargetType="NavigationPage">
@@ -24,14 +24,19 @@
 
 	<Style TargetType="Entry">
 		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
-		<Setter Property="PlaceholderColor" Value="{DynamicResource PrimaryLight}" />
-		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+		<Setter Property="PlaceholderColor" Value="{DynamicResource BackgroundTextAltColor}" />
+		<Setter Property="TextColor" Value="{DynamicResource BackgroundTextColor}" />
+		<Style.Triggers>
+			<Trigger TargetType="Entry" Property="IsEnabled" Value="False">
+				<Setter Property="TextColor" Value="{DynamicResource PrimaryGrayText}" />
+			</Trigger>
+		</Style.Triggers>
 	</Style>
 
 	<Style TargetType="ctrl:MyEntry">
 		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
-		<Setter Property="PlaceholderColor" Value="{DynamicResource PrimaryLight}" />
-		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+		<Setter Property="PlaceholderColor" Value="{DynamicResource BackgroundTextAltColor}" />
+		<Setter Property="TextColor" Value="{DynamicResource BackgroundTextColor}" />
 		<Style.Triggers>
 			<Trigger TargetType="ctrl:MyEntry" Property="IsEnabled" Value="False">
 				<Setter Property="TextColor" Value="{DynamicResource PrimaryGrayText}" />
@@ -41,25 +46,26 @@
 
 	<Style TargetType="Editor">
 		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
-		<Setter Property="PlaceholderColor" Value="{DynamicResource PrimaryLight}" />
-		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+		<Setter Property="PlaceholderColor" Value="{DynamicResource BackgroundTextAltColor}" />
+		<Setter Property="TextColor" Value="{DynamicResource BackgroundTextColor}" />
+
 	</Style>
 
 	<Style TargetType="Picker">
 		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
-		<Setter Property="TitleColor" Value="{DynamicResource PrimaryLight}" />
-		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+		<Setter Property="TitleColor" Value="{DynamicResource BackgroundTextAltColor}" />
+		<Setter Property="TextColor" Value="{DynamicResource BackgroundTextColor}" />
 	</Style>
 
 	<Style x:Key="EnumPicker" TargetType="ctrl:EnumBindablePicker`1">
 		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
-		<Setter Property="TitleColor" Value="{DynamicResource PrimaryGrayText}" />
-		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+		<Setter Property="TitleColor" Value="{DynamicResource BackgroundTextAltColor}" />
+		<Setter Property="TextColor" Value="{DynamicResource BackgroundTextColor}" />
 	</Style>
 
 	<Style TargetType="DatePicker">
 		<Setter Property="BackgroundColor" Value="{DynamicResource PrimaryDark}" />
-		<Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+		<Setter Property="TextColor" Value="{DynamicResource BackgroundTextColor}" />
 	</Style>
 
 	<Style TargetType="Button">
@@ -68,11 +74,11 @@
 	</Style>
 
 	<Style TargetType="ActivityIndicator">
-		<Setter Property="Color" Value="{DynamicResource PrimaryText}" />
+		<Setter Property="Color" Value="{DynamicResource BackgroundTextColor}" />
 	</Style>
 
 	<Style TargetType="ctrl:ExtendedViewCell">
-		<Setter Property="SelectedBackgroundColor" Value="LightBlue" />
+		<Setter Property="SelectedBackgroundColor" Value="{DynamicResource PrimaryDark}" />
 	</Style>
 
 	<Style TargetType="ctrl:WaitIndicator">

@@ -34,8 +34,6 @@
 					Margin="3"
 					HorizontalOptions="FillAndExpand"
 					Placeholder="Meeting With"
-					PlaceholderColor="{DynamicResource LoginHintColor}"
-					Style="{DynamicResource EntryStyle}"
 					Text="{Binding MeetingWith, Mode=TwoWay}"
 					Visual="Material" />
 				<Editor
@@ -50,12 +48,10 @@
 					Visual="Material" />
 
 				<Button
-					BackgroundColor="{DynamicResource Primary}"
 					Command="{Binding SaveVisitCommand}"
 					CornerRadius="50"
 					HorizontalOptions="FillAndExpand"
 					Text="Save"
-					TextColor="{DynamicResource LoginButtonTextColor}"
 					Visual="Material" />
 
 			</StackLayout>

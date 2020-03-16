@@ -64,11 +64,9 @@
 							Text="{Binding ConfirmPassword, Mode=TwoWay}" />
 
 						<Button
-							BackgroundColor="{DynamicResource Primary}"
 							Command="{Binding CreateAccountCommand}"
 							CornerRadius="50"
 							Text="Create Account"
-							TextColor="{DynamicResource LoginButtonTextColor}"
 							VerticalOptions="CenterAndExpand" />
 					</StackLayout>
 					<Grid />

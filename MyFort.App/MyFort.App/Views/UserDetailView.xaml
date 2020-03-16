@@ -63,12 +63,10 @@
 						Visual="Material" />
 				</Grid>
 				<Button
-					BackgroundColor="{DynamicResource Primary}"
 					Command="{Binding SaveUserCommand}"
 					CornerRadius="50"
 					HorizontalOptions="FillAndExpand"
 					Text="Save"
-					TextColor="{DynamicResource LoginButtonTextColor}"
 					Visual="Material" />
 
 			</StackLayout>

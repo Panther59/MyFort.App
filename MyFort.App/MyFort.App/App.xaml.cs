@@ -24,6 +24,8 @@ namespace MyFort.App
 		public static Theme AppTheme { get; set; }
 		public static Theme PhoneTheme { get; set; }
 		public static UnityContainer Container { get; set; }
+		public static DarkTheme darkTheme = new DarkTheme();
+		public static LightTheme lightTheme = new LightTheme();
 
 		public App(Theme theme)
 		{
@@ -51,15 +53,15 @@ namespace MyFort.App
 			{
 				if (IsAppLoaded && App.AppTheme == MyFort.App.Theme.Dark)
 					return;
-				App.Current.Resources.MergedDictionaries.Clear();
-				App.Current.Resources.MergedDictionaries.Add(new DarkTheme());
+				App.Current.Resources.MergedDictionaries.Remove(lightTheme);
+				App.Current.Resources.MergedDictionaries.Add(darkTheme);
 			}
 			else
 			{
 				if (IsAppLoaded && App.AppTheme == MyFort.App.Theme.Light)
 					return;
-				App.Current.Resources.MergedDictionaries.Clear();
-				App.Current.Resources.MergedDictionaries.Add(new LightTheme());
+				App.Current.Resources.MergedDictionaries.Remove(darkTheme);
+				App.Current.Resources.MergedDictionaries.Add(lightTheme);
 			}
 
 			App.AppTheme = mode;

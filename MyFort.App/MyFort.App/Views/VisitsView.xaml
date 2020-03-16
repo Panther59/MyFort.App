@@ -37,12 +37,10 @@
 					Visual="Material" />
 				<Button
 					Grid.Column="2"
-					BackgroundColor="{DynamicResource Primary}"
 					Command="{Binding GetVisitsCommand}"
 					CornerRadius="50"
 					HorizontalOptions="FillAndExpand"
 					Text="Get Visits"
-					TextColor="{DynamicResource LoginButtonTextColor}"
 					VerticalOptions="Center"
 					Visual="Material" />
 			</Grid>

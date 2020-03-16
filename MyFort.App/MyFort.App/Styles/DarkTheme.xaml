@@ -10,7 +10,8 @@
 
 	<Color x:Key="BackgroundColor">#1A1A1A</Color>
 	<Color x:Key="FrameColor">#FF1f1f1f</Color>
-	<Color x:Key="TextPrimaryColor">#FFFFFF</Color>
+	<Color x:Key="BackgroundTextColor">#FFFFFF</Color>
+	<Color x:Key="BackgroundTextAltColor">#BBBBC0</Color>
 	<Color x:Key="TextSecondaryColor">#eFeFeF</Color>
 
 	<Color x:Key="PrimaryLight">#3E5371</Color>

@@ -51,12 +51,10 @@
 					Text="{Binding Outlet.ContactNumber, Mode=TwoWay}"
 					Visual="Material" />
 				<Button
-					BackgroundColor="{DynamicResource Primary}"
 					Command="{Binding SaveOutletCommand}"
 					CornerRadius="50"
 					HorizontalOptions="FillAndExpand"
-					Text="Save"
-					TextColor="{DynamicResource LoginButtonTextColor}" />
+					Text="Save" />
 
 			</StackLayout>
 			<ctrl:WaitIndicator IsBusy="{Binding IsBusy}" Text="Saving Outlet" />

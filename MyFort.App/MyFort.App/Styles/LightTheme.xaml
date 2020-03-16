@@ -9,7 +9,8 @@
 	</ResourceDictionary.MergedDictionaries>
 	<Color x:Key="BackgroundColor">#FFe0e0e0</Color>
 	<Color x:Key="FrameColor">#FFFFFFFF</Color>
-	<Color x:Key="TextPrimaryColor">#B0000000</Color>
+	<Color x:Key="BackgroundTextColor">#000000</Color>
+	<Color x:Key="BackgroundTextAltColor">#2D2D2D</Color>
 	<Color x:Key="TextSecondaryColor">#858585</Color>
 
 	<Color x:Key="PrimaryLight">#B9CEEC</Color>

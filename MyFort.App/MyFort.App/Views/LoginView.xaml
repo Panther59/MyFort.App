@@ -52,80 +52,11 @@
 							Keyboard="Numeric"
 							Placeholder="Password"
 							Text="{Binding Password, Mode=TwoWay}" />
-						<!--<Grid Padding="0,0,0,0">
-							<ctrl:IconFrame
-								Padding="10,5,5,5"
-								BackgroundColor="{DynamicResource PrimaryDark}"
-								HasShadow="false"
-								OutlineColor="{DynamicResource TextPrimaryColor}">
-								<Grid>
-									<Grid.RowDefinitions>
-										<RowDefinition Height="Auto" />
-									</Grid.RowDefinitions>
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="Auto" />
-										<ColumnDefinition Width="*" />
-									</Grid.ColumnDefinitions>
-									<iconize:IconImage
-										HeightRequest="20"
-										HorizontalOptions="Start"
-										Icon="md-email"
-										IconColor="{DynamicResource TextPrimaryColor}"
-										IconSize="20"
-										WidthRequest="20" />
-
-									<Entry
-										x:Name="EntryUserName"
-										Grid.Column="1"
-										HorizontalOptions="FillAndExpand"
-										Placeholder="Email"
-										Text="{Binding Email, Mode=TwoWay}"
-										Visual="Material" />
-								</Grid>
-							</ctrl:IconFrame>
-						</Grid>
-						<Grid Padding="0,0,0,0">
-							<ctrl:IconFrame
-								Padding="10,5,5,5"
-								BackgroundColor="{DynamicResource PrimaryDark}"
-								HasShadow="false"
-								OutlineColor="{DynamicResource TextPrimaryColor}">
-								<Grid>
-									<Grid.RowDefinitions>
-										<RowDefinition Height="Auto" />
-									</Grid.RowDefinitions>
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="Auto" />
-										<ColumnDefinition Width="*" />
-									</Grid.ColumnDefinitions>
-
-									<iconize:IconImage
-										HeightRequest="20"
-										HorizontalOptions="Start"
-										Icon="md-lock"
-										IconColor="{DynamicResource TextPrimaryColor}"
-										IconSize="20"
-										WidthRequest="20" />
-
-									<Entry
-										x:Name="EntryPassword"
-										Grid.Column="1"
-										HorizontalOptions="FillAndExpand"
-										IsPassword="True"
-										Keyboard="Numeric"
-										Placeholder="Password"
-										Text="{Binding Password, Mode=TwoWay}"
-										Visual="Material" />
-								</Grid>
-							</ctrl:IconFrame>
-						</Grid>-->
 						<Button
-							BackgroundColor="{DynamicResource Primary}"
 							Command="{Binding LoginCommand}"
 							CornerRadius="50"
 							HorizontalOptions="FillAndExpand"
-							Text="Login"
-							TextColor="{DynamicResource LoginButtonTextColor}" />
+							Text="Login" />
 
 					</StackLayout>
 					<Grid
